@@ -13,6 +13,11 @@
             }
         },
         {
+            "plain":{
+                
+            }
+        },
+        {
             "institute": {
                 "left": [
                     {
@@ -105,6 +110,51 @@
                         "title": "LOGOUT",
                         "redirectTo": "/logout",
                         "className" : "font-weight-bold"
+                    }
+                ]
+            }
+        },
+        {
+            "issuer":{
+                "left":[
+                    {
+                        "title": "Home",
+                        "redirectTo": "/dashboard",
+                        "activeTab" : "active"
+                    },
+                    {
+                        "title": "Document",
+                        "redirectTo": "/records"
+                    }
+                ]
+            }
+        },
+        {
+            "records":{
+                "left":[
+                    {
+                        "title": "Home",
+                        "redirectTo": "/dashboard"
+                    },
+                    {
+                        "title": "Document",
+                        "redirectTo": "/records",
+                        "activeTab" : "active"
+                    }
+                ]
+            }
+        },
+        {
+            "ntse-admin":{
+                "left":[
+                    {
+                        "title": "Home",
+                        "redirectTo": "/dashboard",
+                        "activeTab" : "active"
+                    },
+                    {
+                        "title": "Document",
+                        "redirectTo": "/records"
                     }
                 ]
             }

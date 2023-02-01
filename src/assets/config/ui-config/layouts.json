@@ -141,6 +141,23 @@
             "state-board": {
                 "table": "state-board-attestation"
             }
+        },
+        {
+            "issuer": {
+                "api": "/Issuer",
+                "title": "Issuer Profile",
+                "cardNo" : "2",
+                "blocks": [
+                    {
+                        "definition": "Issuer",
+                        "edit": true,
+                        "editform":"issuer-setup",
+                        "fields": {
+                            "includes": ["*"]
+                        }
+                    }
+                ]
+            }
         }
     ]
 }

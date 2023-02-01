@@ -35,6 +35,8 @@ export class KeycloakloginComponent implements OnInit {
       console.log('---------',this.config.getEnv('appType'))
       if(this.config.getEnv('appType') && this.config.getEnv('appType') === 'digital_wallet'){
         this.profileUrl = this.entity+'/documents'
+      }if(this.entity === 'issue'){
+        this.profileUrl = '/dashboard';
       }else{
         this.profileUrl = '/profile/'+this.entity;
       }

@@ -867,6 +867,46 @@
                     }
                 ]
             }
+        },
+        {
+            "add-document": {
+                "api": "/Issure",
+                "type": "property:document",
+                "redirectTo": "/profile/issuer",
+                "fieldsets": [
+                    {
+                        "definition": "Document",
+                        "fields": [
+                            {
+                                "name": "document"
+                            }
+                        ]
+                    }
+                ],
+                "template": {
+                    "path": [
+                        "/assets/template/first.html",
+                        "/assets/template/sec.html"
+                    ]
+                }
+            }
+        },
+        {
+            "add-records": {
+                "api": "/",
+                "type": "entity",
+                "redirectTo": "/dashboard",
+                "fieldsets": [
+                    {
+                        "definition": "",
+                        "fields": [
+                            {
+                                "name": ""
+                            }
+                        ]
+                    }
+                ]
+            }
         }
     ]
 }
