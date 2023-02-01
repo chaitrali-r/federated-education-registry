@@ -8,7 +8,8 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { SchemaService } from '../../services/data/schema.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { of } from 'rxjs';
+import { of as observableOf, of } from 'rxjs';
+
 @Component({
   selector: 'app-add-records',
   templateUrl: './add-records.component.html',
@@ -40,6 +41,7 @@ export class AddRecordsComponent implements OnInit {
   fieldName;
   sitems: any;
    states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado']
+   searchResult: any[];
   constructor(public schemaService: SchemaService,
     public toastMsg: ToastMessageService,
     public router: Router,
@@ -53,7 +55,7 @@ export class AddRecordsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.searchStudent();
+   
 
    /* this.schemaService.getSchemas().subscribe((res) => {
       this.responseData = res;
@@ -142,34 +144,79 @@ export class AddRecordsComponent implements OnInit {
     this.fieldKey = fieldObj.key;
     let tempObj = fieldSchena;
 
+   
+
     if(fieldObj.key == 'studentName')
         {
-         // tempObj['type'] = 'autocomplete';
-console.log(this.states)
-          tempObj['templateOptions']['filter'] = (term) => of(term ? this.filterStates(term) : this.states.slice())
+
+          tempObj['type'] = "autocomplete";
+          tempObj['templateOptions']['label'] = 'identityDetails.fullName';
+         
+
+
+          /*  tempObj['templateOptions']['search$'] = (term) => {
+            if (term || term != '') {
+              var formData = {
+                "filters": {
+                  "identityDetails.fullName" : {
+                    
+                  }
+                },
+                "limit": 20,
+                "offset": 0
+              }
+
+              formData.filters['identityDetails.fullName'] = {};
+              formData.filters['identityDetails.fullName']["contains"] = term;
+
+              this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
+                let items = res;
+                console.log({res});
+                items = items.filter(x => x['identityDetails.fullName'].toLocaleLowerCase().indexOf(term?.toLocaleLowerCase()) > -1);
+                if (items) {
+                  this.searchResult = items;
+                  return observableOf(this.searchResult);
+                }
+              });
+            }
+
+            return observableOf(this.searchResult);
+
+          }*/
+
         
-        
-        
-          // tempObj['type'] = "autocomplete";
-          // tempObj['templateOptions']['label'] = 'fullName';
-          // var dataval = "{{value}}"
-          // tempObj['templateOptions']['search$'] = (term) => {
-          //   if (term || term != '') {
-          //     var datapath = this.findPath(field.autocomplete.body, dataval, '')
-          //     this.setPathValue(field.autocomplete.body, datapath, term)
+              var formData = {
+            "filters": {
+              "identityDetails.fullName" : {
+                "contains": "{{value}}"
+              }
+             
+            },
+            "limit": 20,
+            "offset": 0
+          }
+
+           var dataval = "{{value}}";
+
+         tempObj['templateOptions']['search$'] = (term) => {
+            if (term || term != '') {
+              var datapath = this.findPath(formData, dataval, '')
+              this.setPathValue(formData, datapath, term)
   
-          //     dataval = term;
-          //     this.generalService.postData(field.autocomplete.apiURL, field.autocomplete.body).subscribe(async (res) => {
-          //       let items = res;
-          //       items = items.filter(x => x[field.autocomplete.responseKey].toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
-          //       if (items) {
-          //         this.searchResult = items;
-          //         return observableOf(this.searchResult);
-          //       }
-          //     });
-          //   }
-          //   return observableOf(this.searchResult);
-          // }
+              dataval = term;
+              this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
+                let items = res;
+                items = items.filter(x => (x['identityDetails']['fullName']).toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+              
+                if (items) {
+                  console.log(items)
+                  this.searchResult = items;
+                  return observableOf(this.searchResult);
+                }
+              });
+            }
+            return observableOf(this.searchResult);
+          }
         
         }
 
@@ -218,6 +265,8 @@ console.log(this.states)
       tempObj['type'] = 'input';
     }
 
+    console.log({tempObj});
+
     return tempObj;
 
     // this.fields[0].fieldGroup[0]['label'] = (fieldObj.name).toUpperCase();
@@ -231,27 +280,25 @@ console.log(this.states)
     })
   }
 
-  searchStudent(){
+  searchStudent(name){
 
     var formData = {
       "filters": {
-       
+        "identityDetails.fullName" : {
+          "contains": name
+        }
       },
       "limit": 20,
       "offset": 0
     }
 
     this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
-      this.sitems = res;
+     return res;
       console.log({res})
      
     });
   }
 
-  filterStates(name: string) {
-    return this.states.filter(state =>
-      state.toLowerCase().indexOf(name.toLowerCase()) === 0);
-  }
 
 
   findPath = (obj, value, path) => {
@@ -277,5 +324,46 @@ console.log(this.states)
     }
     return false;
   }
+
+
+  setPathValue(obj, path, value) {
+    var keys;
+    if (typeof path === 'string') {
+      keys = path.split(".");
+    }
+    else {
+      keys = path;
+    }
+    const propertyName = keys.pop();
+    let propertyParent = obj;
+    while (keys.length > 0) {
+      const key = keys.shift();
+      if (!(key in propertyParent)) {
+        propertyParent[key] = {};
+      }
+      propertyParent = propertyParent[key];
+    }
+    propertyParent[propertyName] = value;
+    return obj;
+  }
+
+
+
+ngAfterContentChecked1(): void {
+//  // console.log(this.model);
+//  // if(this.model['studentName'])
+//   {
+//   //  let res = this.searchStudent(this.model['studentName']);
+//    // this.model['studentEmail'] = (this.model['studentEmail']) ? this.model['studentName'] : (res['contactDetails'].hasOwnProperty('emailid')) ? res['contactDetails']['email'] : '';
+//    // this.model['studentMob'] = (this.model['studentName']);
+//    // this.model['studentReference'] = (this.model['studentName'])
+
+//   //  result: "Fail"
+
+
+
+
+ // }
+}
 
 }

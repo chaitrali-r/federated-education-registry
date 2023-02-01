@@ -122,7 +122,7 @@
                         "title": "ACTION",
                         "buttonText": "View VC",
                         "type": "button",
-                        "redirectTo": "/pdf-view/NTSE/:id"
+                        "redirectTo": "/pdf-view/NTSE/:osid"
                     }
                 ]
             }
