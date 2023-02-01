@@ -907,6 +907,19 @@
                     }
                 ]
             }
+        },
+        {
+            "NTSE": {
+                "api": "/",
+                "type": "entity",
+                "redirectTo": "/dashboard",
+                "fieldsets": [
+                    {
+                        "definition": "NTSE",
+                        "fields": ["*"]
+                    }
+                ]
+            }
         }
     ]
 }

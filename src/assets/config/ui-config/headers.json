@@ -14,7 +14,13 @@
         },
         {
             "plain":{
-                
+                "right":[
+                    {
+                        "title": "LOGOUT",
+                        "redirectTo": "/logout",
+                        "className" : "font-weight-bold"
+                    }
+                ]
             }
         },
         {
@@ -126,6 +132,13 @@
                         "title": "Document",
                         "redirectTo": "/records"
                     }
+                ],
+                "right": [
+                    {
+                        "title": "LOGOUT",
+                        "redirectTo": "/logout",
+                        "className" : "font-weight-bold"
+                    }
                 ]
             }
         },
@@ -155,6 +168,12 @@
                     {
                         "title": "Document",
                         "redirectTo": "/records"
+                    }
+                ], "right": [
+                    {
+                        "title": "LOGOUT",
+                        "redirectTo": "/logout",
+                        "className" : "font-weight-bold"
                     }
                 ]
             }

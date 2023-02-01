@@ -101,24 +101,28 @@
         },
         {
             "verifiable-credential": {
-                "api": "/Student/claims",
+                "api": "/NTSE",
                 "title": "Verifiable Credential",
+                "call" : "post",
                 "fields": [
                     {
-                        "name": "createdAt",
-                        "title": "SUBMITTED_DATE",
-                        "formate": "date"
+                        "name": "studentName",
+                        "title": "Student Name"
                     },
                     {
-                        "name": "requestorName",
-                        "title": "NAME"
+                        "name": "studentEmail",
+                        "title": "Email"
+                    },
+                    {
+                        "name": "studentMob",
+                        "title": "Mobile Number"
                     },
                     {   
                         "custom": true,
                         "title": "ACTION",
-                        "buttonText": "ATTEST",
+                        "buttonText": "View VC",
                         "type": "button",
-                        "redirectTo": "/student/attestation/verifiable-credential/:id"
+                        "redirectTo": "/pdf-view/NTSE/:id"
                     }
                 ]
             }

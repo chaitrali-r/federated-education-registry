@@ -8,6 +8,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { SchemaService } from '../../services/data/schema.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-add-records',
   templateUrl: './add-records.component.html',
@@ -37,7 +38,8 @@ export class AddRecordsComponent implements OnInit {
   item: any;
   fieldKey: any;
   fieldName;
-
+  sitems: any;
+   states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado']
   constructor(public schemaService: SchemaService,
     public toastMsg: ToastMessageService,
     public router: Router,
@@ -50,6 +52,8 @@ export class AddRecordsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.searchStudent();
 
    /* this.schemaService.getSchemas().subscribe((res) => {
       this.responseData = res;
@@ -116,6 +120,10 @@ export class AddRecordsComponent implements OnInit {
         tempFields[index]['fieldGroup'] = fieldObj.fieldGroup
         // this.schema.properties[this.fieldKey]['required'].includes();
 
+
+
+        
+
       }
       else if (fieldObj.type == 'array') {
       }
@@ -134,6 +142,37 @@ export class AddRecordsComponent implements OnInit {
     this.fieldKey = fieldObj.key;
     let tempObj = fieldSchena;
 
+    if(fieldObj.key == 'studentName')
+        {
+         // tempObj['type'] = 'autocomplete';
+console.log(this.states)
+          tempObj['templateOptions']['filter'] = (term) => of(term ? this.filterStates(term) : this.states.slice())
+        
+        
+        
+          // tempObj['type'] = "autocomplete";
+          // tempObj['templateOptions']['label'] = 'fullName';
+          // var dataval = "{{value}}"
+          // tempObj['templateOptions']['search$'] = (term) => {
+          //   if (term || term != '') {
+          //     var datapath = this.findPath(field.autocomplete.body, dataval, '')
+          //     this.setPathValue(field.autocomplete.body, datapath, term)
+  
+          //     dataval = term;
+          //     this.generalService.postData(field.autocomplete.apiURL, field.autocomplete.body).subscribe(async (res) => {
+          //       let items = res;
+          //       items = items.filter(x => x[field.autocomplete.responseKey].toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+          //       if (items) {
+          //         this.searchResult = items;
+          //         return observableOf(this.searchResult);
+          //       }
+          //     });
+          //   }
+          //   return observableOf(this.searchResult);
+          // }
+        
+        }
+
     if (!fieldObj['templateOptions'].hasOwnProperty('label') || fieldObj.templateOptions.label == undefined) {
       // let str: any = (fieldObj.templateOptions.label) ? fieldObj.templateOptions.label : fieldObj.key;
 
@@ -151,7 +190,6 @@ export class AddRecordsComponent implements OnInit {
 
       if (fieldObj.templateOptions.label == undefined) {
         // let str: any = fieldObj.key;
-
         tempObj['templateOptions']['label'] = this.fieldKey.charAt(0).toUpperCase() + this.fieldKey.slice(1);
       }
     }
@@ -187,10 +225,57 @@ export class AddRecordsComponent implements OnInit {
 
   submit() {
     console.log(this.model);
-    this.generalService.postData('/NTSE/invite', this.model).subscribe((res) => {
+    this.generalService.postData('/NTSE', this.model).subscribe((res) => {
 
       this.router.navigate(['records/' + this.schemaName]);
     })
+  }
+
+  searchStudent(){
+
+    var formData = {
+      "filters": {
+       
+      },
+      "limit": 20,
+      "offset": 0
+    }
+
+    this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
+      this.sitems = res;
+      console.log({res})
+     
+    });
+  }
+
+  filterStates(name: string) {
+    return this.states.filter(state =>
+      state.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+
+  findPath = (obj, value, path) => {
+    if (typeof obj !== 'object') {
+      return false;
+    }
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        var t = path;
+        var v = obj[key];
+        var newPath = path ? path.slice() : [];
+        newPath.push(key);
+        if (v === value) {
+          return newPath;
+        } else if (typeof v !== 'object') {
+          newPath = t;
+        }
+        var res = this.findPath(v, value, newPath);
+        if (res) {
+          return res;
+        }
+      }
+    }
+    return false;
   }
 
 }

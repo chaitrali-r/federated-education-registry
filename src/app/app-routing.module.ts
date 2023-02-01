@@ -27,7 +27,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 // import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
 // import { VerifyComponent } from './issure/verify/verify.component';
 // import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component';
-// import { PdfViewComponent } from './issure/pdf-view/pdf-view.component';
+ import { PdfViewComponent } from './issure/pdf-view/pdf-view.component';
 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 // import { FaqComponent } from './custom-components/faq/faq.component';
@@ -108,8 +108,8 @@ const routes: Routes = [
 //  { path: 'preview-html', component: PreviewHtmlComponent  , canActivate: [AuthGuard] },
 //  { path: 'verify', component: VerifyComponent  },
 //  { path: 'advance-editor', component: AdvanceEditorComponent  },
-//  { path: 'pdf-view', component: PdfViewComponent  , canActivate: [AuthGuard] },
-//  { path: 'pdf-view/:document/:id', component: PdfViewComponent  , canActivate: [AuthGuard] },
+  { path: 'pdf-view', component: PdfViewComponent  , canActivate: [AuthGuard] },
+  { path: 'pdf-view/:document/:id', component: PdfViewComponent  , canActivate: [AuthGuard] },
  
 // Installation
 { path: 'install', component: InstallComponent },
