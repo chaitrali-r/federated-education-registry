@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1675349754254,
+  "timestamp": 1675350128277,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -734,7 +734,7 @@
     "/assets/cmaps/V.bcmap": "99790f12ca21a196bc1d836ae5bf0ad7af95e079",
     "/assets/cmaps/WP-Symbol.bcmap": "3a6417abad460a1a083be75636c014f3a73937b5",
     "/assets/config/.gitkeep": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-    "/assets/config/config.json": "fcc669e72a2aeeddc2b14c81e425b3c4978b3d77",
+    "/assets/config/config.json": "b65663d20f1d579d09ab98df88e1540ddc20f0a0",
     "/assets/config/home.html": "cd5c8930218795d2194f1da86eab53f21401f2fa",
     "/assets/config/ui-config/forms.json": "b35e0c7b394841fa185bb4a5a9629194934b3a14",
     "/assets/config/ui-config/headers.json": "391350a2ed3e00dcd8cbf1b266da8f5e11a77ece",
