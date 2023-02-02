@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SchemaService } from '../services/data/schema.service';
 import { GeneralService } from '../services/general/general.service';
@@ -24,10 +25,15 @@ export class TablesComponent implements OnInit {
   limit: number = 10;
   identifier: any;
 
-  constructor(public router: Router, private route: ActivatedRoute, public generalService: GeneralService, public schemaService: SchemaService) { }
+  name = 'Set iframe source';
+  url: string = "https://sunbirdrc-sandbox.xiv.in/public/dashboards/N6Rl6lfgdvfflB3sJLLQJtqp6ZSrD23TSSj9a35U?org_slug=default";
+  urlSafe: SafeResourceUrl;
+
+
+  constructor(public router: Router, private route: ActivatedRoute, public generalService: GeneralService, public schemaService: SchemaService, public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-
+   this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
     
 
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
