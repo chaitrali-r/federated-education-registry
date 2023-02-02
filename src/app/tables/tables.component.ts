@@ -64,7 +64,13 @@ export class TablesComponent implements OnInit {
       console.log("Something went wrong")
     }
     this.generalService.getData(get_url).subscribe((res) => {
-      this.model = res;
+      if(res.hasOwnProperty('content'))
+      {
+        this.model = res['content'];
+      }else{
+        this.model = res;
+      }
+    
       // this.entity = res[0].osid;
       this.addData()
     });
@@ -78,7 +84,12 @@ export class TablesComponent implements OnInit {
       console.log("Something went wrong")
     }
     this.generalService.getData(get_url).subscribe((res) => {
-      this.model = res;
+      if(res.hasOwnProperty('content'))
+      {
+        this.model = res['content'];
+      }else{
+        this.model = res;
+      }
       // this.entity = res[0].osid;
       this.addData1()
     });

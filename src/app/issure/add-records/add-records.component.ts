@@ -145,51 +145,28 @@ export class AddRecordsComponent implements OnInit {
     let tempObj = fieldSchena;
 
    
+    if(fieldObj.key == 'studentReference')
+        {
+        //  tempObj['templateOptions']['onSelect'] = this.searchStudent(this.model['studentName']);
+
+        }
 
     if(fieldObj.key == 'studentName')
         {
 
           tempObj['type'] = "autocomplete";
-          tempObj['templateOptions']['label'] = 'identityDetails.fullName';
-         
-
-
-          /*  tempObj['templateOptions']['search$'] = (term) => {
-            if (term || term != '') {
-              var formData = {
-                "filters": {
-                  "identityDetails.fullName" : {
-                    
-                  }
-                },
-                "limit": 20,
-                "offset": 0
-              }
-
-              formData.filters['identityDetails.fullName'] = {};
-              formData.filters['identityDetails.fullName']["contains"] = term;
-
-              this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
-                let items = res;
-                console.log({res});
-                items = items.filter(x => x['identityDetails.fullName'].toLocaleLowerCase().indexOf(term?.toLocaleLowerCase()) > -1);
-                if (items) {
-                  this.searchResult = items;
-                  return observableOf(this.searchResult);
-                }
-              });
-            }
-
-            return observableOf(this.searchResult);
-
-          }*/
+        //  tempObj['templateOptions']['label'] = 'Student name';
+          tempObj['templateOptions']['label'] = 'fullName';
+          tempObj['templateOptions']['placeholder'] = 'Enter Student Name';
 
         
               var formData = {
             "filters": {
-              "identityDetails.fullName" : {
-                "contains": "{{value}}"
-              }
+              "identityDetails":{
+                "fullName": {
+                "contains":"{{value}}"
+                }
+            }
              
             },
             "limit": 20,
@@ -206,7 +183,7 @@ export class AddRecordsComponent implements OnInit {
               dataval = term;
               this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
                 let items = res;
-                items = items.filter(x => (x['identityDetails']['fullName']).toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+                items = items.filter(x => (x['fullName']).toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
               
                 if (items) {
                   console.log(items)
@@ -221,7 +198,6 @@ export class AddRecordsComponent implements OnInit {
         }
 
     if (!fieldObj['templateOptions'].hasOwnProperty('label') || fieldObj.templateOptions.label == undefined) {
-      // let str: any = (fieldObj.templateOptions.label) ? fieldObj.templateOptions.label : fieldObj.key;
 
 
       //   let str: any = fieldObj.key;
@@ -242,11 +218,7 @@ export class AddRecordsComponent implements OnInit {
     }
 
 
-    // if (requiredF.hasOwnProperty('required')) {
-    //   if (requiredF.required.includes(this.fieldKey)) {
-    //     tempObj['templateOptions']['required'] = true;
-    //   }
-    // }
+  
 
     if (fieldObj.templateOptions['type'] == 'enum' || fieldObj.templateOptions.hasOwnProperty('options')) {
       tempObj['type'] = 'select';
@@ -268,8 +240,6 @@ export class AddRecordsComponent implements OnInit {
     console.log({tempObj});
 
     return tempObj;
-
-    // this.fields[0].fieldGroup[0]['label'] = (fieldObj.name).toUpperCase();
   }
 
   submit() {
@@ -280,12 +250,16 @@ export class AddRecordsComponent implements OnInit {
     })
   }
 
+
+
   searchStudent(name){
 
     var formData = {
       "filters": {
-        "identityDetails.fullName" : {
+        "identityDetails" : {
+          "fullName": {
           "contains": name
+          }
         }
       },
       "limit": 20,
@@ -293,7 +267,7 @@ export class AddRecordsComponent implements OnInit {
     }
 
     this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
-     return res;
+     return res['osid'];
       console.log({res})
      
     });
@@ -350,20 +324,15 @@ export class AddRecordsComponent implements OnInit {
 
 
 ngAfterContentChecked1(): void {
-//  // console.log(this.model);
-//  // if(this.model['studentName'])
-//   {
-//   //  let res = this.searchStudent(this.model['studentName']);
-//    // this.model['studentEmail'] = (this.model['studentEmail']) ? this.model['studentName'] : (res['contactDetails'].hasOwnProperty('emailid')) ? res['contactDetails']['email'] : '';
-//    // this.model['studentMob'] = (this.model['studentName']);
-//    // this.model['studentReference'] = (this.model['studentName'])
+ // console.log(this.model);
+  if(this.model['studentName'])
+  {
+    let res = this.searchStudent(this.model['studentName']);
+   // this.model['studentEmail'] = (this.model['studentEmail']) ? this.model['studentName'] : (res['contactDetails'].hasOwnProperty('emailid')) ? res['contactDetails']['email'] : '';
+   // this.model['studentMob'] = (this.model['studentName']);
+    this.model['studentReference'] = (res['osid']) ? res['osid'] : "";  
 
-//   //  result: "Fail"
-
-
-
-
- // }
+ }
 }
 
 }

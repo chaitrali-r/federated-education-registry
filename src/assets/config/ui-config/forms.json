@@ -156,10 +156,8 @@
                                         "filters": {
                                             "instituteName": {
                                                 "contains": "{{value}}"
-                                            },
-                                            "instituteAffiliation._osState": {
-                                                "eq": "PUBLISHED"
                                             }
+                                           
                                         },
                                         "limit": 20,
                                         "offset": 0
@@ -685,8 +683,10 @@
                                             "instituteName": {
                                                 "contains": "{{value}}"
                                             },
-                                            "instituteAffiliation._osState": {
+                                            "instituteAffiliation": {
+                                                "_osState" :{
                                                 "eq": "PUBLISHED"
+                                                }
                                             }
                                         },
                                         "limit": 20,
