@@ -28,6 +28,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 // import { VerifyComponent } from './issure/verify/verify.component';
 // import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component';
  import { PdfViewComponent } from './issure/pdf-view/pdf-view.component';
+ import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.component';
 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 // import { FaqComponent } from './custom-components/faq/faq.component';
@@ -38,6 +39,7 @@ const routes: Routes = [
 // Auth
 { path: 'login', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
 { path: 'logout', component: LogoutComponent},
+{ path: 'graph-dashboard', component: GraphDashboardComponent},
 
 // Forms
 { path: 'form/:form', component: FormsComponent },
