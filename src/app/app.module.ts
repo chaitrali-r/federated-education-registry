@@ -127,6 +127,7 @@ import { VerifyIndentityCode } from './forms/types/verify-identity-no.type';
  import { AddCertificateComponent } from './issure/add-certificate/add-certificate.component';
  import { GetRecordsComponent } from './issure/get-records/get-records.component';
  import { AddRecordsComponent } from './issure/add-records/add-records.component';
+import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.component';
 // import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
 // import { VerifyComponent } from './issure/verify/verify.component' 
 // import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
@@ -167,6 +168,7 @@ import { VerifyIndentityCode } from './forms/types/verify-identity-no.type';
      AddCertificateComponent,
      GetRecordsComponent,
      AddRecordsComponent,
+     GraphDashboardComponent,
     // PreviewHtmlComponent,
     // VerifyComponent,
     // AdvanceEditorComponent
