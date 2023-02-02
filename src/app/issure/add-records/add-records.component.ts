@@ -217,9 +217,6 @@ export class AddRecordsComponent implements OnInit {
       }
     }
 
-
-  
-
     if (fieldObj.templateOptions['type'] == 'enum' || fieldObj.templateOptions.hasOwnProperty('options')) {
       tempObj['type'] = 'select';
       tempObj['templateOptions']['options'] = fieldObj.templateOptions.options;

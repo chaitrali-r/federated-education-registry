@@ -16,11 +16,13 @@
 <br />
     <div class="d-flex mt-3" *ngIf="documentName">
         <a  href="" class="line-height32" onClick="history.go(-1); return false;"><i
-            class="fa fa-angle-left primary-text"></i> </a> &nbsp; &nbsp;
+            class="fa fa-angle-left primary-text mb-2"></i> </a> &nbsp; &nbsp;
             
-        <span class="heading-2">{{documentName}}</span>
+        <span class="heading-2 mt-1 fw-bold">{{documentName}}</span>
         
     </div>
+
+   
 
     <div class="mb-3 mt-3">
         <span class="heading-2" *ngIf="recordItems?.length == 1 || !recordItems?.length">{{recordItems?.length}} Record</span>
