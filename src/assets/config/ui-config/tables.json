@@ -102,7 +102,7 @@
         {
             "verifiable-credential": {
                 "api": "/NTSE",
-                "title": "Verifiable Credential",
+                "title": "My Verifiable Credential",
                 "call" : "post",
                 "fields": [
                     {
@@ -120,7 +120,7 @@
                     {   
                         "custom": true,
                         "title": "ACTION",
-                        "buttonText": "View VC",
+                        "buttonText": "View Credential",
                         "type": "button",
                         "redirectTo": "/pdf-view/NTSE/:osid"
                     }

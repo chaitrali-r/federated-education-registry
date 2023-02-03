@@ -550,11 +550,23 @@ formly-autocomplete-type .ng-select {
     height: auto;
     display: block;
     text-indent: -9999px;
-    max-width: 150px;
+    max-width: 220px;
     min-width: 50px;
     min-height: 40px;
     max-height: 50px;
 }
+
+.logo-ncert{
+    width: auto;
+    height: auto;
+    display: block;
+    text-indent: -9999px;
+    max-width: 150px;
+    min-width: 50px;
+    min-height: 40px;
+    max-height: 50px; 
+}
+
 
 .ng-select {
     margin-bottom: 15px;

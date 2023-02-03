@@ -73,7 +73,7 @@
                         "redirectTo": "/profile/student"
                     },
                     {
-                        "title": "Verifiable Credential",
+                        "title": "My Verifiable Credential",
                         "redirectTo": "/student/attestation/verifiable-credential"
                     }
                 ],

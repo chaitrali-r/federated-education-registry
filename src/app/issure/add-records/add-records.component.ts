@@ -42,6 +42,8 @@ export class AddRecordsComponent implements OnInit {
   sitems: any;
    states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado']
    searchResult: any[];
+  priviousName: any;
+  osid: void;
   constructor(public schemaService: SchemaService,
     public toastMsg: ToastMessageService,
     public router: Router,
@@ -146,10 +148,30 @@ export class AddRecordsComponent implements OnInit {
 
    
     if(fieldObj.key == 'studentReference')
+    tempObj['templateOptions']['readonly'] = true;
         {
-        //  tempObj['templateOptions']['onSelect'] = this.searchStudent(this.model['studentName']);
+          tempObj['expressionProperties'] = {
+            'model.studentReference':  (m) => {
+             
+              if(m.studentName )
+              {  
+               // return '1-6a691b00-bd48-4bc6-9855-c0ed3a6b745f';
 
-        }
+                if(this.priviousName != m.studentName){
+                  this.priviousName = m.studentName; 
+                   this.searchStudent(m['studentName']);
+                }
+                return this.osid;
+             
+              }else{
+                return '';
+              }
+
+          
+          }
+       }
+
+      }
 
     if(fieldObj.key == 'studentName')
         {
@@ -249,7 +271,7 @@ export class AddRecordsComponent implements OnInit {
 
 
 
-  searchStudent(name){
+  async searchStudent(name){
 
     var formData = {
       "filters": {
@@ -263,9 +285,10 @@ export class AddRecordsComponent implements OnInit {
       "offset": 0
     }
 
-    this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
-     return res['osid'];
-      console.log({res})
+   await this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
+    this.osid = res[0]['osid'];
+ 
+      return res[0]['osid'];
      
     });
   }

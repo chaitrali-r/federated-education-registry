@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   lang;
   indexPre;
   ELOCKER_THEME: string;
+  entityName: string;
   constructor(
     public router: Router, private config: AppConfig, public schemaService: SchemaService,
     public translate: TranslateService, private themeService: ThemeService
@@ -33,6 +34,8 @@ export class HeaderComponent implements OnInit {
     this.languages = JSON.parse(localStorage.getItem('languages'));
     this.langCode = localStorage.getItem('setLanguage');
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
+
+    this.entityName = localStorage.getItem('entity');
 
     if (!this.ELOCKER_THEME) {
       localStorage.setItem('ELOCKER_THEME', "default");

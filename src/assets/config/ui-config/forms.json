@@ -682,11 +682,6 @@
                                         "filters": {
                                             "instituteName": {
                                                 "contains": "{{value}}"
-                                            },
-                                            "instituteAffiliation": {
-                                                "_osState" :{
-                                                "eq": "PUBLISHED"
-                                                }
                                             }
                                         },
                                         "limit": 20,
@@ -767,9 +762,6 @@
                                         "filters": {
                                             "instituteName": {
                                                 "contains": "{{value}}"
-                                            },
-                                            "instituteAffiliation._osState": {
-                                                "eq": "PUBLISHED"
                                             }
                                         },
                                         "limit": 20,

@@ -19,7 +19,8 @@
                 <!-- <span class="navbar-toggler-icon"></span> -->
             </button>
             <div class="nav-item active logo-text" style="width: auto;">
-                <a role="link" aria-disabled="true"><img class="logo" src={{logo}} /></a>
+                <a role="link" aria-disabled="true" *ngIf=" entityName != 'issue'"><img class="logo" src={{logo}} /></a>
+                <a role="link" aria-disabled="true" *ngIf="entityName == 'issue'"><img class="logo-ncert" src="/assets/images/logo-NCERT.png" /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ng-template [ngIf]="headerSchema?.left">

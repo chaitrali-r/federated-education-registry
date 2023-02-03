@@ -31,6 +31,7 @@ export class KeycloakloginComponent implements OnInit {
     this.keycloakService.getToken().then((token)=>{
       console.log('keyCloak teacher token - ', token);
       localStorage.setItem('token', token);
+      localStorage.setItem('entity', this.entity);
       localStorage.setItem('loggedInUser', this.user);
       console.log('---------',this.config.getEnv('appType'))
       if(this.config.getEnv('appType') && this.config.getEnv('appType') === 'digital_wallet'){
