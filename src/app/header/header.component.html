@@ -46,7 +46,7 @@
                     <ul *ngFor="let header of headerSchema.right" class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <a *ngIf="header?.title && entityName != 'issue'" class="nav-link p14 {{header?.className}} {{header?.activeTab}}" [routerLink]="[header.redirectTo]">{{header?.title | translate}}</a>
-                            <a *ngIf="header?.title && entityName == 'issue'" class=" p14 {{header?.className}}" [ngClass]="{'nav-link':entityName != 'issue', 'text-white ' : entityName == 'issue'}" [routerLink]="[header.redirectTo]">{{header?.title | translate}} </a>
+                            <a *ngIf="header?.title && entityName == 'issue'" class=" p14 {{header?.className}}" [ngClass]="{'nav-link':entityName != 'issue', 'text-white mr-3' : entityName == 'issue'}" [routerLink]="[header.redirectTo]">{{header?.title | translate}} </a>
 
                             <a *ngIf="header?.image" class="nav-link" [routerLink]="[header.redirectTo]">
                                 <img style="width: 25px;" src={{header?.image}} />
