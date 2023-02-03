@@ -1,6 +1,6 @@
 <app-header [headerFor]='headerName'></app-header>
 
-<div class="card mt-5 mt-100">
+<!-- <div class="card mt-5 mt-100">
     <div class="card-body ml-5 d-flex flex-justify-between">
         <div class="d-flex flex-justify-between">
             <div>
@@ -14,20 +14,20 @@
 
         </div>
        
-        <!-- <div>
+        <div>
             <button class="mt-23 fs-14 btn btn-sec-bg submit-button float-end" data-toggle="modal"
                 data-target="#prewiewProfile" (click)="getFormJSON()">
                 <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Edit
             </button>
-        </div> -->
+        </div>
     </div>
-</div>
+</div> -->
 
 
-<div class="container">
-    <div class="row">
-        <div class="mt-4 mb-3 px-0">
-            <span class="heading-2">Documents</span>
+<div class="container-fluid mt-100">
+    <div class="row  ml-2">
+        <div class="mt-4 mb-3">
+            <span class="heading-2 fw-bold">Verifiable Credentials</span>
             <!-- <a class=" p-2 p14 btn-bg label-primary btn-style float-end" href="/add-doc-types"> Add Document type</a> -->
             <!-- <button type="button" class="btn p14 btn-bg text-capitalize float-end btn-sm label-primary btn-primary"
                 data-toggle="modal" data-target="#prewiewProfile">Add New Document</button> -->
@@ -47,7 +47,7 @@
             <div class="d-flex flex-row flex-wrap p-0">
                 <div *ngFor="let item of templatesItems" class="card card-block mr-2 mb-2 p-4  col-sm-3">
                     <p class="p16 mb-1 font-600">{{item?.name}}</p>
-                    <h2 class="font-600">0</h2>
+                    <!-- <h2 class="font-600">0</h2> -->
                     <p class="p12 mb-1">Record</p>
                     <a routerLink="/records/{{item?.name}}"
                         class="my-2 fs-14 btn btn-sec-bg submit-button align-self-start">View / Add</a>

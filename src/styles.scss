@@ -557,11 +557,11 @@ formly-autocomplete-type .ng-select {
 }
 
 .logo-ncert{
-    width: auto;
+    width: 310px;
     height: auto;
     display: block;
     text-indent: -9999px;
-    max-width: 150px;
+   
     min-width: 50px;
     min-height: 40px;
     max-height: 50px; 
@@ -731,6 +731,20 @@ formly-autocomplete-type .ng-select {
 }
 
 
+
+.navbar-light .navbar-nav .nav-link .ncert-nav{
+    color: white !important;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.navbar-light .navbar-nav .active .ncert-nav{
+    color: white !important;
+}
+
+.color-white{
+    color: white !important;
+}
 /* borders */
 
 .bb-1 {
@@ -778,6 +792,9 @@ label {
     color: var(--primaryTextColor) !important;
 }
 
+.bg-pink{
+    background-color: #981F4D;
+}
 .lh-32 {
     line-height: 32px;
 }
