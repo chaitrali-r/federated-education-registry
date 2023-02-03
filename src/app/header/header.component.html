@@ -21,7 +21,7 @@
             <div class="nav-item active logo-text" style="width: auto;">
                 <a role="link" aria-disabled="true" *ngIf="entityName && entityName != 'issue'"><img class="logo" src={{logo}} /></a>
                 <a role="link" aria-disabled="true" *ngIf="entityName == 'issue'"><img class="logo-ncert" src="/assets/images/ncertlogo1.png" /></a>
-                <img class="logo" *ngIf="!entityName" src="assets/images/Logo-MOE.png" />
+                <img class="logo ml-2" *ngIf="!entityName" src="assets/images/Logo-MOE.png" />
 
               
             </div>
@@ -45,7 +45,9 @@
                 <ng-template [ngIf]="headerSchema?.right">
                     <ul *ngFor="let header of headerSchema.right" class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a *ngIf="header?.title" class="nav-link p14 {{header?.className}} {{header?.activeTab}}" [routerLink]="[header.redirectTo]">{{header?.title | translate}}</a>
+                            <a *ngIf="header?.title && entityName != 'issue'" class="nav-link p14 {{header?.className}} {{header?.activeTab}}" [routerLink]="[header.redirectTo]">{{header?.title | translate}}</a>
+                            <a *ngIf="header?.title && entityName == 'issue'" class=" p14 {{header?.className}}" [ngClass]="{'nav-link':entityName != 'issue', 'text-white ' : entityName == 'issue'}" [routerLink]="[header.redirectTo]">{{header?.title | translate}} </a>
+
                             <a *ngIf="header?.image" class="nav-link" [routerLink]="[header.redirectTo]">
                                 <img style="width: 25px;" src={{header?.image}} />
                             </a>
@@ -75,7 +77,7 @@
             <div class="d-flex align-items-center ml-auto">
                 <span *ngIf="languages?.length > 1">
                     <!-- <i style="font-size: 25px;" class="fa fa-language text-primary-color mt-3" aria-hidden="true"></i> -->
-                    <select class="nav-link-color"  [ngClass]="{'lang-btn':entityName != 'issue', 'lang-btn-ncert' : entityName == 'issue'}" (change)="languageChange($event)">
+                    <select class="nav-link-color"  [ngClass]="{'lang-btn':entityName != 'issue', 'lang-btn-ncert text-white ' : entityName == 'issue'}" (change)="languageChange($event)">
                         <option *ngFor="let lang of languages" [value]="lang.code" [ngClass]="{'color-white': entityName == 'issue'}"
                             [selected]="(lang.code == langCode)? true : false">{{lang.name}}</option>
                     </select>

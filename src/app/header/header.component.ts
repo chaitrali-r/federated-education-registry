@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   indexPre;
   ELOCKER_THEME: string;
   entityName: string;
-  temp = 0;
+
   constructor(
     public router: Router, private config: AppConfig, public schemaService: SchemaService,
     public translate: TranslateService, private themeService: ThemeService
@@ -33,9 +33,6 @@ export class HeaderComponent implements OnInit {
 
   async ngOnInit() {
 
-    if(this.entityName == 'issue'){
-      this.temp = 100;
-     }
     this.languages = JSON.parse(localStorage.getItem('languages'));
     this.langCode = localStorage.getItem('setLanguage');
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');

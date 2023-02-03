@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1675437043928,
+  "timestamp": 1675450142986,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,16 +13,16 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.7a7ba0e50e64503ac42a.js",
-        "/main-es5.7a7ba0e50e64503ac42a.js",
+        "/main-es2015.12dee22dc52a0c415265.js",
+        "/main-es5.12dee22dc52a0c415265.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.8b3b42a99c7d74af97ca.js",
         "/polyfills-es5.d8b77d4476005789e70d.js",
         "/runtime-es2015.993ec2237ea5fdddbf19.js",
         "/runtime-es5.993ec2237ea5fdddbf19.js",
         "/scripts.036683af84e5b3cee3f7.js",
-        "/styles-es2015.5c84b7f2b1b233f002c4.js",
-        "/styles-es5.5c84b7f2b1b233f002c4.js"
+        "/styles-es2015.9e1bc9bf4c332838803d.js",
+        "/styles-es5.9e1bc9bf4c332838803d.js"
       ],
       "patterns": []
     },
@@ -258,6 +258,7 @@
         "/assets/images/logout.png",
         "/assets/images/logox1.png",
         "/assets/images/mobile.png",
+        "/assets/images/ncertlogo1.png",
         "/assets/images/ndear.png",
         "/assets/images/slgov.png",
         "/assets/images/theme.png",
@@ -739,7 +740,7 @@
     "/assets/cmaps/WP-Symbol.bcmap": "3a6417abad460a1a083be75636c014f3a73937b5",
     "/assets/config/.gitkeep": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
     "/assets/config/config.json": "b65663d20f1d579d09ab98df88e1540ddc20f0a0",
-    "/assets/config/home.html": "3d94ddb80d7fbc3a52b8b98353f2c5e28ff2f7e6",
+    "/assets/config/home.html": "df718f8a2d489c0a78e0aba08c5c65e9f7a245b0",
     "/assets/config/ui-config/forms.json": "3a160d2c46a1e9e432b00abb96867bdc3ae1457a",
     "/assets/config/ui-config/headers.json": "972e3719c21a7dcdc91e8b8ec419b4946fa8f3f9",
     "/assets/config/ui-config/layouts.json": "6f82a40107730cf03e0cd82ee003bd13050bdb1f",
@@ -784,6 +785,7 @@
     "/assets/images/logout.png": "934d40ef6abd0e308cfe71c518ecde357605b56b",
     "/assets/images/logox1.png": "bd7c0fabc5066dd7aa58ef9e9174febd9122443e",
     "/assets/images/mobile.png": "768b605f3223fdf0346a6fe95b33a000e6784ffa",
+    "/assets/images/ncertlogo1.png": "4df0b781c8e0b6849e64d912feb8df13068a4b6d",
     "/assets/images/ndear.png": "b56c98e3b927f2808d83f343418563208100b1a8",
     "/assets/images/slgov.png": "d4e7af6b8f64cd38f1e98516b1dfcfcfaa76777b",
     "/assets/images/theme.png": "a0fbd74004a64c79a34f16b82ae64b05ff21fb74",
@@ -1081,17 +1083,17 @@
     "/fa-solid-900.be9ee23c0c6390141475.ttf": "eb8914f6b1797b45ee0883e6089d92695d9f9441",
     "/fa-solid-900.eeccf4f66002c6f2ba24.woff": "a22acd7697f36e7d4cc31a853c70e776eac54bb1",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "c80dd42bc89ad1bff13caaa4c57cfc4f17de83f1",
-    "/main-es2015.7a7ba0e50e64503ac42a.js": "7d701fa068a56208fbbc8144548c3d54a23093e4",
-    "/main-es5.7a7ba0e50e64503ac42a.js": "3abb657bfeaca338f84b1ba8addc684ff6a85fca",
+    "/index.html": "d846128900c07da3f2a3eb8d34842df1fea5eb2a",
+    "/main-es2015.12dee22dc52a0c415265.js": "380c986c4c49b678aca50af99aba3f6bd162904a",
+    "/main-es5.12dee22dc52a0c415265.js": "884a08ed498c327dc16b55819d6eeecd9cda5fc5",
     "/manifest.webmanifest": "7db0cc58bd914afabea0005b16c681d9047d684a",
     "/polyfills-es2015.8b3b42a99c7d74af97ca.js": "90fb474e1a7d87bd57bc8a95fb3fd361b919d815",
     "/polyfills-es5.d8b77d4476005789e70d.js": "780489803ec95c99e629baa67c7cdbed6ab99dbe",
     "/runtime-es2015.993ec2237ea5fdddbf19.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/runtime-es5.993ec2237ea5fdddbf19.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/scripts.036683af84e5b3cee3f7.js": "d1f569313abf3fb3607255ea92a594b868c0913e",
-    "/styles-es2015.5c84b7f2b1b233f002c4.js": "7f4766a959f12859bc1b552a2fe3b755daa01b84",
-    "/styles-es5.5c84b7f2b1b233f002c4.js": "7f4766a959f12859bc1b552a2fe3b755daa01b84"
+    "/styles-es2015.9e1bc9bf4c332838803d.js": "b6cb83519c0cb32dd212cedf53763752eb70a641",
+    "/styles-es5.9e1bc9bf4c332838803d.js": "b6cb83519c0cb32dd212cedf53763752eb70a641"
   },
   "navigationUrls": [
     {
