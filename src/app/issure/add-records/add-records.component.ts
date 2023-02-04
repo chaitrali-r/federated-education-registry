@@ -34,7 +34,7 @@ export class AddRecordsComponent implements OnInit {
   formSchema: any;
   responseData: any;
   definations: any;
-  property: any;
+  property: any = {};
   schemaName: any;
   item: any;
   fieldKey: any;
@@ -81,7 +81,24 @@ export class AddRecordsComponent implements OnInit {
       this.responseData = JSON.parse(res[0].schema);
 
       this.definations = this.responseData.definitions;
-      this.property = this.definations[this.schemaName].properties;
+    //  this.property = this.definations[this.schemaName].properties;
+
+
+this.property['studentBoard'] = {
+ 
+    "type": "string",
+    "placeholder" : "Select Board",
+    "enum": [
+      "CBSE Board",
+      "UP Board "
+    ],
+    "title": "Board"
+  
+}
+
+//this.property.concat(this.definations[this.schemaName].properties);
+Object.assign(this.property,this.definations[this.schemaName].properties);
+delete  this.property['studentReference'];
 
 
       this.schema["type"] = "object";
@@ -146,8 +163,12 @@ export class AddRecordsComponent implements OnInit {
     this.fieldKey = fieldObj.key;
     let tempObj = fieldSchena;
 
-   
-    if(fieldObj.key == 'studentReference')
+    if (fieldObj.hasOwnProperty('enum') || fieldObj.templateOptions.hasOwnProperty('options')) {
+      tempObj['type'] = 'select';
+      tempObj['templateOptions']['options'] = fieldObj.templateOptions.options;
+    }
+
+  /* if(fieldObj.key == 'studentReference')
     tempObj['templateOptions']['readonly'] = true;
         {
           tempObj['expressionProperties'] = {
@@ -171,7 +192,7 @@ export class AddRecordsComponent implements OnInit {
           }
        }
 
-      }
+      }*/
 
     if(fieldObj.key == 'studentName')
         {
@@ -243,6 +264,8 @@ export class AddRecordsComponent implements OnInit {
       tempObj['type'] = 'select';
       tempObj['templateOptions']['options'] = fieldObj.templateOptions.options;
     }
+
+   
 
     if (this.property.hasOwnProperty(this.fieldKey) && this.property[this.fieldKey].hasOwnProperty('format')) {
       tempObj['templateOptions']['type'] = this.property[this.fieldKey].format;
