@@ -77,14 +77,23 @@ export class AddRecordsComponent implements OnInit {
     });*/
 
     this.generalService.getData('Schema').subscribe((res) => {
-      console.log(JSON.parse(res[0].schema));
-      this.responseData = JSON.parse(res[0].schema);
 
-      this.definations = this.responseData.definitions;
+      for(let i = 0; i < res.length; i ++)
+      {
+        if(res[i].name == this.schemaName)
+        {
+          console.log(JSON.parse(res[i].schema));
+          this.responseData = JSON.parse(res[i].schema);
+          this.definations = this.responseData.definitions;
+
+        }
+
+      }
+     
     //  this.property = this.definations[this.schemaName].properties;
 
 
-this.property['studentBoard'] = {
+this.property['board'] = {
  
     "type": "string",
     "placeholder" : "Select Board",
@@ -97,8 +106,10 @@ this.property['studentBoard'] = {
 }
 
 //this.property.concat(this.definations[this.schemaName].properties);
+delete  this.definations[this.schemaName].properties['board'];
+
 Object.assign(this.property,this.definations[this.schemaName].properties);
-delete  this.property['studentReference'];
+//delete  this.property['studentReference'];
 
 
       this.schema["type"] = "object";
@@ -168,9 +179,10 @@ delete  this.property['studentReference'];
       tempObj['templateOptions']['options'] = fieldObj.templateOptions.options;
     }
 
-  /* if(fieldObj.key == 'studentReference')
+   if(fieldObj.key == 'studentReference'){
     tempObj['templateOptions']['readonly'] = true;
-        {
+    tempObj['hideExpression'] = true;
+        
           tempObj['expressionProperties'] = {
             'model.studentReference':  (m) => {
              
@@ -192,7 +204,8 @@ delete  this.property['studentReference'];
           }
        }
 
-      }*/
+      
+    }
 
     if(fieldObj.key == 'studentName')
         {
@@ -286,7 +299,7 @@ delete  this.property['studentReference'];
 
   submit() {
     console.log(this.model);
-    this.generalService.postData('/NTSE', this.model).subscribe((res) => {
+    this.generalService.postData('/' + this.schemaName, this.model).subscribe((res) => {
 
       this.router.navigate(['records/' + this.schemaName]);
     })
