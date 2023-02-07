@@ -5,8 +5,9 @@
     "tables": [
         {
             "teacher-attestation": {
-                "api": "/Teacher/claims",
+                "api": "/Teacher/claims?size=1000",
                 "title": "TEACHER_ATTESTATIONS",
+                "checkStatus" : true,
                 "fields": [
                     {
                         "name": "createdAt",
@@ -29,8 +30,9 @@
         },
         {
             "institute-attestation": {
-                "api": "/Institute/claims",
+                "api": "/Institute/claims?size=1000",
                 "title": "INSTITUTE_ATTESTATIONS",
+                "checkStatus" : true,
                 "fields": [
                     {
                         "name": "createdAt",
@@ -53,8 +55,9 @@
         },
         {
             "board-cbse-attestation": {
-                "api": "/board-cbse/claims",
+                "api": "/board-cbse/claims?size=1000",
                 "title": "CBSE_BOARD_ATTESTATIONS",
+                "checkStatus" : true,
                 "fields": [
                     {
                         "name": "createdAt",
@@ -77,8 +80,9 @@
         },
         {
             "state-board-attestation": {
-                "api": "/board-cbse/claims",
+                "api": "/board-cbse/claims?size=1000",
                 "title": "State Board",
+                "checkStatus" : true,
                 "fields": [
                     {
                         "name": "createdAt",
@@ -103,6 +107,10 @@
             "verifiable-credential": {
                 "api": "/NTSE",
                 "title": "My Verifiable Credential",
+                "checkStatus" : "false",
+                "callMultiApi" : {
+                    "api" : ["NTSE_Maths", "NTSE_Science", "KalaUtsav", "KheloIndia", "Toycathon"]
+                },
                 "call" : "post",
                 "fields": [
                     {
@@ -117,12 +125,16 @@
                         "name": "studentMob",
                         "title": "Mobile Number"
                     },
+                    {
+                        "name": "vctype",
+                        "title": "Credential type"
+                    },
                     {   
                         "custom": true,
                         "title": "ACTION",
                         "buttonText": "View Credential",
                         "type": "button",
-                        "redirectTo": "/pdf-view/NTSE/:osid"
+                        "redirectTo": "/pdf-view/:vctype:osid"
                     }
                 ]
             }

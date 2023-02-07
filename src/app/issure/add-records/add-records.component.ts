@@ -212,16 +212,14 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
 
           tempObj['type'] = "autocomplete";
         //  tempObj['templateOptions']['label'] = 'Student name';
-          tempObj['templateOptions']['label'] = 'fullName';
+          tempObj['templateOptions']['label'] = 'identityDetails.fullName';
           tempObj['templateOptions']['placeholder'] = 'Enter Student Name';
 
         
               var formData = {
             "filters": {
-              "identityDetails":{
-                "fullName": {
+              "identityDetails.fullName": {
                 "contains":"{{value}}"
-                }
             }
              
             },
@@ -239,7 +237,11 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
               dataval = term;
               this.generalService.postData('/Student/search', formData).subscribe(async (res) => {
                 let items = res;
-                items = items.filter(x => (x['fullName']).toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+               
+                //  items = items.filter(x => {  (x['identityDetails']['fullName']).toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1
+                //  }
+                //  );
+                
               
                 if (items) {
                   console.log(items)
