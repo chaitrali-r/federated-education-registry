@@ -128,9 +128,9 @@ import { VerifyIndentityCode } from './forms/types/verify-identity-no.type';
  import { GetRecordsComponent } from './issure/get-records/get-records.component';
  import { AddRecordsComponent } from './issure/add-records/add-records.component';
 import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.component';
-// import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
+ import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
 // import { VerifyComponent } from './issure/verify/verify.component' 
-// import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
+import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 
 @NgModule({
@@ -169,9 +169,9 @@ import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.compo
      GetRecordsComponent,
      AddRecordsComponent,
      GraphDashboardComponent,
-    // PreviewHtmlComponent,
+     PreviewHtmlComponent,
     // VerifyComponent,
-    // AdvanceEditorComponent
+     AdvanceEditorComponent
   ],
   imports: [
     BrowserModule,
