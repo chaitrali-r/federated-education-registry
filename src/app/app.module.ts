@@ -130,7 +130,7 @@ import { VerifyIndentityCode } from './forms/types/verify-identity-no.type';
 import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.component';
  import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
 // import { VerifyComponent } from './issure/verify/verify.component' 
- import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
+import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
 import { VerifyComponent } from './issure/verify/verify.component' 
@@ -178,7 +178,7 @@ console.log(configData['default']);
      GraphDashboardComponent,
      PreviewHtmlComponent,
     // VerifyComponent,
-    AdvanceEditorComponent
+     AdvanceEditorComponent
   ],
   imports: [
     BrowserModule,
