@@ -13,6 +13,8 @@
 
 @import '~bootstrap/scss/bootstrap';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~jsoneditor/dist/jsoneditor.min.css";
+
 :root {
     // SB-RC
     // --primaryColor: #1987B6;
@@ -821,5 +823,292 @@ label {
 
    .iframeSize{
     width: 100%;
-    height: 100%;
-   }
+    bottom: 0px;
+    z-index: 9999;
+    background: #fff;
+    left: 0;
+    padding: 10px;
+  }
+
+.landing-img {
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100% 100%;
+    flex: 1;
+    width: 55%;
+}
+
+.xx-small{
+    font-size: xx-small;
+}
+.langing-bg-color {
+    background: radial-gradient(72.14% 138.06% at 4.8% 90.49%, #D5EBE9 0%, #D5EBE9 45.05%, #B5E6DF 100%);
+}
+
+.small-card {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 141px;
+    width: 326px;
+    left: 0px;
+    top: 0px;
+    border-radius: 4px;
+    min-width: 300px !important;
+}
+
+formly-field formly-object-type p {
+    color: #8D9091;
+    font-size: 14px;
+}
+
+formly-field .col-6 {
+    display: inline-block;
+    padding: 0 0 0 5px;
+}
+
+.ui-tabs{
+    border-bottom: 1px solid #dee2e6 !important;
+    margin-bottom: 10px !important;
+    text-align: center;
+    li{
+        margin-right: 15px;
+        a{
+            color: #000;
+            padding-bottom: 10px;
+        }
+    }
+    li.active{
+      border-bottom: solid 2px #1987B6;
+      a{
+        color: #1987B6;
+      }
+    }
+  }
+  .preview-footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    z-index: 9999;
+    background: #fff;
+    left: 0;
+    padding: 10px;
+  }
+
+  .h-90{
+      height: 90%;
+  }
+  .bx-none{
+    box-shadow: none !important;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.pt-70{
+    padding-top: 70px;
+}
+.modal-open .fixed-bottom{
+    display: none;
+}
+
+.modal-open .preview-footer{
+    background: rgb(145 142 142 / 10%);
+    z-index: 9;
+}
+.heading-5{
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    line-height: 32px !important;
+}
+
+.heading-2{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 32px;
+}
+.heading-3{
+    font-size: 14px !important;
+    line-height: 32px !important;
+    font-weight: 700 !important;
+}
+.heading-4{
+    font-size: 12px !important;
+    font-weight: 400;
+    line-height: 16px !important;  
+}
+
+.sb-gray-color{
+    color: #8D9091;
+}
+
+.btn-primary-sm{
+    background: #1987B6;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    line-height: 32px !important;
+}
+.p1{
+    padding: 0.175rem 2.5rem !important;
+}
+.p2{
+    padding: 0.275rem .85rem !important;
+}
+.p0{
+    padding:0.175rem 1.5rem !important
+}
+.sb-text-primary{
+    color: #1987B6 !important;
+}
+.iframe-container{
+    background: #EFEFEF;
+    border: solid 1px #EFEFEF;
+}
+.border-light-color{
+    border: 1px solid #EFEFEF;
+}
+.mtn-28{
+    margin-top: -28px;
+}
+.pt-34{
+    padding-top: 34px;
+}
+.mb-05{
+    margin-bottom: 0.5rem !important;
+}
+.bg-none{
+    background: none !important;
+}
+.navbar-inverse{
+    justify-content: flex-start !important;
+  }
+
+  .tox .tox-dialog--width-lg, .tox .tox-dialog {
+    height: 547px !important;
+    max-height: 70% !important
+}
+
+.tox .tox-dialog-wrap__backdrop {
+    z-index: 5000;
+}
+
+  /*  Json Editor : start*/
+
+  .json-editor, div.jsoneditor-outer , .ace-jsoneditor, textarea.jsoneditor-text{
+    min-height: 400px !important;
+  }
+
+.jsoneditor-menu{
+    display: none;
+}
+
+.mt-6{
+    margin-top: 6rem !important;
+}
+
+.jsoneditor{
+    height: 600px !important;
+}
+ /*  Json Editor : end */
+
+ /*  Advance editor: start */
+
+ .formcomponents {
+ padding-right: 5px !important;
+ padding-left: 5px !important;
+
+}
+
+ /*  advance editor: End */
+
+ /*   Gragesjs editor - start */
+ .gjs-cv-canvas{
+     width: 70% !important;
+ }
+
+ .gjs-pn-panel{
+    width: 30% !important;
+ }
+
+ .gjs-pn-options {
+    right: 30% !important;
+ }
+
+.gjs-pn-btn{
+margin-right :15px !important;
+}
+
+.gjs-pn-commands {
+    display: flex !important;
+}
+
+.adv-btn {
+    color: #A6D4FF !important;
+    background-color: #100e0e9c !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    font-weight: 700 !important;
+  }
+  
+  .builder-sidebar_scroll {
+    margin: -8px !important;
+}
+
+  .pcard {
+    background-color: #322931 !important;
+    color: #FFFFFF !important;
+}
+
+.pcard-body, .card-body-container{
+    background: #1B2124;
+    color: #FFFFFF !important;
+}
+
+/* Start - ngx-editor css */
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    height: 50%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  
+//   .active, .collapsible:hover {
+//     background-color: #555;
+//   }
+  
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+  
+  .ngx-text-editor{
+    background-color: #ffffff !important;
+    font-size: 14px;
+    height: 600px !important;
+  }
+
+  .ngx-text-editor-textarea{
+    height: 600px !important;
+  }
+
+  .ngx-toolbar {
+    display: none !important;
+  }
+
+  /* End - ngx-editor css */
