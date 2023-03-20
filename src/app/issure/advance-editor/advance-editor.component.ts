@@ -260,7 +260,7 @@ export class AdvanceEditorComponent implements OnInit {
     // console.log( this.vcEditor.getText())
 
     this.jsonEditor['_data']['_osConfig']['credentialTemplate'] = this.vcFields;
-    this.newItemEvent.emit(this.jsonEditor);
+    this.newItemEvent.emit(this.jsonEditor['_data']);
   }
 
   formioJsonToPlainJSONSchema(event, components, jsonDefination) {
@@ -313,7 +313,8 @@ export class AdvanceEditorComponent implements OnInit {
           "default": false
         }
       }  if (element.type == 'selectboxes') {
-        tempFjson[element.key] = {  type: 'select',
+        tempFjson[element.key] = {  
+          type: 'select',
         templateOptions: {
           label: element.label,
           multiple: true,

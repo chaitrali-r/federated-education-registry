@@ -128,10 +128,17 @@ import { VerifyIndentityCode } from './forms/types/verify-identity-no.type';
  import { GetRecordsComponent } from './issure/get-records/get-records.component';
  import { AddRecordsComponent } from './issure/add-records/add-records.component';
 import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.component';
-// import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
+ import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
 // import { VerifyComponent } from './issure/verify/verify.component' 
-// import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
+ import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { VerifyComponent } from './issure/verify/verify.component' 
+import { FormioModule } from 'angular-formio';
+import { NgxTextEditorModule } from 'ngx-text-editor';
+
+import * as configData from '../assets/config/config.json';
+console.log(configData['default']);
 
 @NgModule({
   declarations: [
@@ -169,9 +176,9 @@ import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.compo
      GetRecordsComponent,
      AddRecordsComponent,
      GraphDashboardComponent,
-    // PreviewHtmlComponent,
+     PreviewHtmlComponent,
     // VerifyComponent,
-    // AdvanceEditorComponent
+    AdvanceEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -244,7 +251,10 @@ import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.compo
       preventDuplicates: true,
     }),
     NgxPaginationModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    NgJsonEditorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    FormioModule,
+    NgxTextEditorModule
   ],
   exports: [TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

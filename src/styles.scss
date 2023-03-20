@@ -306,6 +306,13 @@ $primary-color-dark: #000;
     background-color: $gray-color!important;
 }
 
+.gobackBtn {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  
 // .text-primary-color{
 //     color: $primary-color;
 // }
@@ -369,6 +376,10 @@ button.calendar:active {
 
 .d-flex {
     display: flex;
+}
+
+.dflex-dc-column{
+    flex-direction: column;
 }
 
 .flex-justify-between {
@@ -483,6 +494,17 @@ button.calendar:active {
     //margin-top: 100px;
     padding-bottom: 100px;
     margin-top: 75px;
+}
+
+.modal{
+    .container{
+        padding-bottom: 38px;
+    }
+}
+
+.sub-container {
+    //margin-top: 100px;
+   margin: 20px;
 }
 
 formly-field {
@@ -618,7 +640,11 @@ formly-autocomplete-type .ng-select {
 }
 
 .fs-14 {
-    font-size: 14px;
+    font-size: 14px !important;
+}
+
+.fs-16 {
+    font-size: 16px !important;
 }
 
 .fs-25 {
@@ -758,7 +784,7 @@ legend{
  
 }
 
-h4, h3 {
+h4, h3 , h2{
     color: var(--primaryTextColor)
 }
 

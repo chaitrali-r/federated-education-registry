@@ -428,7 +428,7 @@ export const editorConfig = {
                 container: true,
                 datetime: true,
                 radio: false,
-                selectboxes: false,
+                selectboxes: true,
                 checkbox: true
             }
         },
