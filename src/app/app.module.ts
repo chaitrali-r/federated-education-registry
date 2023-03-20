@@ -132,6 +132,13 @@ import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.compo
 // import { VerifyComponent } from './issure/verify/verify.component' 
 import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
+import { NgJsonEditorModule } from 'ang-jsoneditor';
+import { VerifyComponent } from './issure/verify/verify.component' 
+import { FormioModule } from 'angular-formio';
+import { NgxTextEditorModule } from 'ngx-text-editor';
+
+import * as configData from '../assets/config/config.json';
+console.log(configData['default']);
 
 @NgModule({
   declarations: [
@@ -244,7 +251,10 @@ import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.c
       preventDuplicates: true,
     }),
     NgxPaginationModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    NgJsonEditorModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    FormioModule,
+    NgxTextEditorModule
   ],
   exports: [TranslateModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
