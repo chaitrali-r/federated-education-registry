@@ -55,8 +55,9 @@ export class PdfViewComponent implements OnInit {
   downloadPDF() {
     this.pdfName = this.documentName;
     let headerOptions = new HttpHeaders({
-      'template': 'https://gist.githubusercontent.com/varadeth/536b6e210180029cd5cf4f1e6a5ff304/raw/a2e5d7f908382ff5ab5f789a5ba3b7ff274bcf35/ntse_credential.html',
-      'Accept': 'application/pdf'
+     // 'template': 'https://gist.githubusercontent.com/varadeth/536b6e210180029cd5cf4f1e6a5ff304/raw/a2e5d7f908382ff5ab5f789a5ba3b7ff274bcf35/ntse_credential.html',
+      'Accept': 'application/pdf',
+      'template-key' : 'html'
     });
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
     // post or get depending on your requirement
