@@ -93,17 +93,17 @@ export class AddRecordsComponent implements OnInit {
     //  this.property = this.definations[this.schemaName].properties;
 
 
-this.property['board'] = {
+// this.property['board'] = {
  
-    "type": "string",
-    "placeholder" : "Select Board",
-    "enum": [
-      "CBSE Board",
-      "UP Board "
-    ],
-    "title": "Board"
+//     "type": "string",
+//     "placeholder" : "Select Board",
+//     "enum": [
+//       "CBSE Board",
+//       "UP Board "
+//     ],
+//     "title": "Board"
   
-}
+// }
 
 //this.property.concat(this.definations[this.schemaName].properties);
 delete  this.definations[this.schemaName].properties['board'];
