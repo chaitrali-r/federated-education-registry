@@ -207,7 +207,7 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
       
     }
 
-    if(fieldObj.key == 'studentName')
+    if(fieldObj.key == 'studentName' || fieldObj.key == 'name')
         {
 
           tempObj['type'] = "autocomplete";

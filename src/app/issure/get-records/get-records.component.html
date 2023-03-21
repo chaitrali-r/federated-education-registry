@@ -45,13 +45,13 @@
         <tr>
           <th class="heading-4 sb-gray-color">Name</th>
           <th class="heading-4 sb-gray-color">Mobile Number </th>
-          <th class="heading-4 sb-gray-color">Issued Date</th>
+          <!-- <th class="heading-4 sb-gray-color">Issued Date</th> -->
           <th></th>
         </tr>
         <tr *ngFor="let item of recordItems" class="p-3">
-          <td class="heading-3 sb-text-primary">{{item?.studentName}}</td>
-          <td class="heading-3">{{item?.studentMob}}</td>
-          <td class="heading-3">{{item?.osCreatedAt | date : 'dd MMM y'}} </td>
+          <td class="heading-3 sb-text-primary">{{item?.name}}</td>
+          <td class="heading-3">{{item?.contact}}</td>
+       <!-- ?   <td class="heading-3">{{item?.osCreatedAt | date : 'dd MMM y'}} </td> -->
           <td class="d-flex justify-content-end">
                <!--   <div (click)="downloadVc(item)">
                 <i class="fa fa-download sb-text-primary cursor-pointer" aria-hidden="true" title="Download"></i>
