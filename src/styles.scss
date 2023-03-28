@@ -126,6 +126,12 @@
     background-color: var(--primaryColor) !important
 }
 
+.btn-primary-blue {
+    background: #e3edf1 !important;
+    color: #1987B6!important;
+    border: 0 !important;
+}
+
 .ngx-pagination .current {
     background: var(--primaryColor) !important;
     ;
@@ -153,9 +159,10 @@ textarea.form-control {
 }
 
 .btn-style {
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     height: 40px;
 }
+
 
 .text-primary-color {
     color: var(--primaryColor) !important;
@@ -493,7 +500,7 @@ button.calendar:active {
 .container {
     //margin-top: 100px;
     padding-bottom: 100px;
-    margin-top: 75px;
+    margin-top: 100px;
 }
 
 .modal{
@@ -651,15 +658,31 @@ formly-autocomplete-type .ng-select {
     font-size: 25px;
 }
 
+input[type="file"] {
+    display: none;
+  }
+  
+  .custom-Browse {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  
+  .custom-Browse:hover {
+    background-color: #f0f0f0;
+  }
 
 /* Button */
 
 .btn {
-    border-radius: 8px !important;
+    border-radius: 25px !important;
     text-transform: capitalize !important;
     box-shadow: none !important;
 }
-
+.btn-size{
+    width: 18% !important;
+}
 .primary-text-color {
     color: $primary-color !important;
 }

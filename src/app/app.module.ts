@@ -138,6 +138,7 @@ import { FormioModule } from 'angular-formio';
 import { NgxTextEditorModule } from 'ngx-text-editor';
 
 import * as configData from '../assets/config/config.json';
+import { BulkRecordsComponent } from './issure/bulk-records/bulk-records.component';
 console.log(configData['default']);
 
 @NgModule({
@@ -178,7 +179,8 @@ console.log(configData['default']);
      GraphDashboardComponent,
      PreviewHtmlComponent,
     // VerifyComponent,
-     AdvanceEditorComponent
+     AdvanceEditorComponent,
+    BulkRecordsComponent
   ],
   imports: [
     BrowserModule,

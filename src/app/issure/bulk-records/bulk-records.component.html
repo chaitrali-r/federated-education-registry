@@ -1,0 +1,99 @@
+<app-header [headerFor]='headerName'></app-header>
+<br />
+
+<div class=" container mt-5 pt-5">
+  <a  class="line-height32" href="/records"><i
+    class="fa fa-angle-left primary-text mb-2"></i> </a> &nbsp; 
+  <span class="heading-2 mt-5 fw-bold mb-3">Add Bulk Records</span>
+
+  <div class="card mb-3">
+    <div class="p16 card-body d-flex">
+      <div class="mb-1">Download sample template to upload records.
+        <p class="mb-1" style="color: #8D9091;">Column names: Record Name, Email, Mobile Number, Gender, Date of Birth,
+          Validity </p>
+      </div>
+      <div type="button" class="btn btn-primary-blue btn-style btn-size font-weight-bold p-2 p14"
+        style="margin-left:180px;"> <i class="fa fa-download mr-1" aria-hidden="true"></i>Download Sample </div>
+    </div>
+  </div>
+
+  <span class="heading-2 mt-1 fw-bold mb-3">Upload File</span>
+
+  <div class="card">
+    <div class="p16 card-body d-flex">
+      <div class="mb-1 mr-5">
+        <form action="submit-file.php" method="POST" enctype="multipart/form-data">
+          <label type="button" for="file-upload" class="primary-text-color fw-bold">Browse File</label>
+          <p class="mb-1" style="color: #8D9091;">File must be in csv format </p>
+          <input type="file" id="file-upload" name="uploaded-file" accept="text/csv" onchange="updateLabel(this)">
+        </form>
+      </div>
+      <div type="button" class="btn btn-size btn-primary-blue btn-style font-weight-bold p-2  p14"
+        style="margin-left:540px;" data-toggle="modal" data-target="#bulkUploadModalSuccess"> <i
+          class="fa fa-upload mr-1" aria-hidden="true"></i>Import Records </div>
+    </div>
+
+    <!--Bulk Upload Modal- successful -->
+    <div class="modal fade" id="bulkUploadModalSuccess" tabindex="-1" role="dialog"
+      aria-labelledby="bulkUploadModalSuccess" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="p-4 modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bulkUploadModalSuccess">Document Uploaded</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <div class="p14 mb-2 mt-2"> {{'Records_Jan2021toMar2021.csv'}} file successfully uploaded</div>
+              <div class="d-flex">
+                <div class="mb-2 mt-1 mr-1">
+                  <i class="fa fa-check-circle" style="color: green;" aria-hidden="true"></i>
+                </div>
+                <div class="p14 mb-2 mt-2 fw-bold">{{'10'}} Records were successfully uploaded</div>
+              </div>
+              <div class="d-flex">
+                <div class="mb-2 mt-1 mr-1">
+                  <i class="fa fa-info-circle" style="color: red;"></i>
+                </div>
+                <div class="p14 mb-2 mt-2 fw-bold">{{'5'}} Records were failed</div>
+              </div>
+              <div class="p14 mb-2 mt-2 fw-bold ">
+                <span class="primary-text-color"> Download file </span>
+                <span> to view error messages</span>
+              </div>
+              <button id="" type="submit" class="btn btn-primary submit-button mb-2" data-dismiss="modal">{{'OK' |
+                translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Bulk Upload Modal - successful -->
+
+    <!--Bulk Upload Modal- fail -->
+    <div class="modal fade" id="bulkUploadModalfail" tabindex="-1" role="dialog" aria-labelledby="bulkUploadModalfail"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="p-4 modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="bulkUploadModalfail">Document Not Uploaded</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <div class="p14 mb-2 mt-2"> Could not upload {{'Records_Jan2021toMar2021.csv'}} file.</div>
+              <div class="p14 mb-2 mt-2"> Please upload again.</div>
+              <button id="" type="submit" class="btn btn-primary submit-button mb-2" data-dismiss="modal">{{'OK' |
+                translate}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Bulk Upload Modal-fail -->
+  </div>
+</div>
