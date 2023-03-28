@@ -500,7 +500,7 @@ button.calendar:active {
 .container {
     //margin-top: 100px;
     padding-bottom: 100px;
-    margin-top: 100px;
+    margin-top: 75px;
 }
 
 .modal{
@@ -657,21 +657,6 @@ formly-autocomplete-type .ng-select {
 .fs-25 {
     font-size: 25px;
 }
-
-input[type="file"] {
-    display: none;
-  }
-  
-  .custom-Browse {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-  }
-  
-  .custom-Browse:hover {
-    background-color: #f0f0f0;
-  }
 
 /* Button */
 
