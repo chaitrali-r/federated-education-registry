@@ -126,6 +126,12 @@
     background-color: var(--primaryColor) !important
 }
 
+.btn-primary-blue {
+    background: var(--secondaryBtnBgColor) !important;
+    color: var(--primarybgColor) !important;
+    border: 0 !important;
+}
+
 .ngx-pagination .current {
     background: var(--primaryColor) !important;
     ;
@@ -153,9 +159,10 @@ textarea.form-control {
 }
 
 .btn-style {
-    border-radius: 8px !important;
+    border-radius: 10px !important;
     height: 40px;
 }
+
 
 .text-primary-color {
     color: var(--primaryColor) !important;
@@ -651,15 +658,16 @@ formly-autocomplete-type .ng-select {
     font-size: 25px;
 }
 
-
 /* Button */
 
 .btn {
-    border-radius: 8px !important;
+    border-radius: 25px !important;
     text-transform: capitalize !important;
     box-shadow: none !important;
 }
-
+.btn-size{
+    width: 18% !important;
+}
 .primary-text-color {
     color: $primary-color !important;
 }

@@ -24,6 +24,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
  import { AddCertificateComponent } from './issure/add-certificate/add-certificate.component';
  import { GetRecordsComponent } from './issure/get-records/get-records.component';
  import { AddRecordsComponent } from './issure/add-records/add-records.component';
+ import { BulkRecordsComponent } from './issure/bulk-records/bulk-records.component';
  import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
 // import { VerifyComponent } from './issure/verify/verify.component';
  import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component';
@@ -105,6 +106,7 @@ const routes: Routes = [
  { path: 'records', component: GetRecordsComponent , canActivate: [AuthGuard] },
   { path: 'records/:document', component: GetRecordsComponent , canActivate: [AuthGuard] },
  { path: 'add-records/:document', component: AddRecordsComponent , canActivate: [AuthGuard] },
+ { path: 'bulk-records', component: BulkRecordsComponent , canActivate: [AuthGuard] },
  { path: 'certificate/:form', component: AddCertificateComponent , canActivate: [AuthGuard] },
  { path: 'certificate', component: AddCertificateComponent , canActivate: [AuthGuard] },
 
