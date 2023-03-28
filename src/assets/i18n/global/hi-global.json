@@ -183,7 +183,22 @@
   "ANYONE" : "कोई भी",
   "SOMETHING_WENT_WRONG": "फ़ाइल अपलोड करते समय कुछ गलत हुआ, कृपया पुनः प्रयास करें",
   "DEMO":"यह एजुकेशन पोर्टल का डेमो है। दस्तावेज़ीकरण की जाँच करें",
-  "HERE" : "यहां"
-
+  "HERE" : "यहां",
+  "ADD_BULK_RECORDS":"थोक रिकॉर्ड जोड़ें",
+  "DOWNLOAD_SAMPLE_TEMPLATE":"रिकॉर्ड अपलोड करने के लिए नमूना टेम्पलेट डाउनलोड करें.",
+  "DOWNLOAD_SAMPLE":"नमूना डाउनलोड करें",
+  "UPLOAD_FILES":"फ़ाइल अपलोड करें",
+  "BROWSE_FILE":"फाइल खोजो",
+  "FILE_IN_CSV_FORMAT":"फ़ाइल csv फ़ॉर्मैट में होनी चाहिए",
+  "IMPORT_RECORDS":"रिकॉर्ड आयात करें",
+  "DOWNLOAD_UPLOADED":"दस्तावेज़ अपलोड किया गया",
+  "FILE_SUCCESSFULLY_UPLOADED":"फ़ाइल सफलतापूर्वक अपलोड की गई",
+  "RECORDS_SUCCESSFULLY_UPLOADED":"रिकॉर्ड सफलतापूर्वक अपलोड किए गए",
+  "RECORDS_FAILED":"अभिलेख विफल रहे",
+  "DOWNLOAD_FILE":"डाउनलोड फ़ाइल",
+  "VIEW_ERROR":" त्रुटि संदेशों को देखने के लिए",
+  "DOWNLOAD_NOT_UPLOADED":"दस्तावेज़ अपलोड नहीं किया गया",
+  "COULD_NOT_UPLOAD":"अपलोड नहीं हो सका",
+  "UPLOAD_AGAIN":"कृपया फिर से अपलोड करें|"
 
 }
