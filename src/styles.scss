@@ -127,8 +127,8 @@
 }
 
 .btn-primary-blue {
-    background: #e3edf1 !important;
-    color: #1987B6!important;
+    background: var(--secondaryBtnBgColor) !important;
+    color: var(--primarybgColor) !important;
     border: 0 !important;
 }
 
