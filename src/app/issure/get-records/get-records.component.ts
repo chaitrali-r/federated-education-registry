@@ -19,11 +19,22 @@ export class GetRecordsComponent implements OnInit {
 
   documentName: string;
   pdfName: any;
+  osid: string;
+  schemaObj;
+  tempObj: any;
+  nameArray = [];
+  nameArray2;
   constructor(public router: Router, public route: ActivatedRoute,
     public generalService: GeneralService, private http: HttpClient,
     private config: AppConfig) { 
       this.documentName = this.route.snapshot.paramMap.get('document'); 
-     
+      this.osid = this.route.snapshot.paramMap.get('osid'); 
+
+      console.log(this.osid);
+ 
+      
+
+       
 
    // this.item = this.router.getCurrentNavigation().extras.state.item;
 

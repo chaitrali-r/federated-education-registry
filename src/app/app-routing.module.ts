@@ -104,9 +104,9 @@ const routes: Routes = [
 
   { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard] },
  { path: 'records', component: GetRecordsComponent , canActivate: [AuthGuard] },
-  { path: 'records/:document', component: GetRecordsComponent , canActivate: [AuthGuard] },
- { path: 'add-records/:document', component: AddRecordsComponent , canActivate: [AuthGuard] },
- { path: 'bulk-records', component: BulkRecordsComponent , canActivate: [AuthGuard] },
+  { path: 'records/:document/:osid', component: GetRecordsComponent , canActivate: [AuthGuard] },
+ { path: 'add-records/:document/:osid', component: AddRecordsComponent , canActivate: [AuthGuard] },
+ { path: 'bulk-records/:osid', component: BulkRecordsComponent , canActivate: [AuthGuard] },
  { path: 'certificate/:form', component: AddCertificateComponent , canActivate: [AuthGuard] },
  { path: 'certificate', component: AddCertificateComponent , canActivate: [AuthGuard] },
 

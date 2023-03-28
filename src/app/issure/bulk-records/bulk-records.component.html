@@ -9,8 +9,12 @@
   <div class="card mb-3">
     <div class="p16 card-body d-flex">
       <div class="mb-1">{{'DOWNLOAD_SAMPLE_TEMPLATE' | translate}}
-        <p class="mb-1" style="color: #8D9091;">Column names: Record Name, Email, Mobile Number, Gender, Date of Birth,
-          Validity </p>
+        <p class="mb-1" style="color: #8D9091;">Column names:  <span *ngFor="let item of nameArray; let i = index">
+          <span>{{item}} ,</span>
+         
+
+      </span> 
+       
       </div>
       <div type="button" class="btn btn-primary-blue btn-style btn-size font-weight-bold p-2 p14"
         style="margin-left:180px;"> <i class="fa fa-download mr-1" aria-hidden="true"></i>{{'DOWNLOAD_SAMPLE' | translate}} </div>
