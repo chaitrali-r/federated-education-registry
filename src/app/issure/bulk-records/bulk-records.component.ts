@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { CsvService } from 'src/app/services/csv/csv.service';
+
 import { AppConfig } from 'src/app/app.config';
 
 @Component({
@@ -19,7 +21,7 @@ export class BulkRecordsComponent implements OnInit {
   nameArray = [];
   nameArray2;
   constructor(public router: Router, public route: ActivatedRoute,
-    public generalService: GeneralService, private http: HttpClient,
+    public generalService: GeneralService, private http: HttpClient, public CsvService: CsvService,
     private config: AppConfig){
       this.osid = this.route.snapshot.paramMap.get('osid'); 
     }
@@ -33,16 +35,18 @@ export class BulkRecordsComponent implements OnInit {
     this.generalService.getData('/Schema/' + this.osid).subscribe((res) => {
      console.log(res);
      this.schemaObj = JSON.parse(res.schema);
-     this.tempObj = this.schemaObj.definitions.ScholarshipForTopClassStudents.properties;
+     this.tempObj = this.schemaObj.definitions[this.schemaObj.title].properties;
        console.log(this.tempObj);
        Object.values(this.tempObj).forEach(entry => {
          console.log(entry['title']);
          this.nameArray.push(entry['title']); 
+       
        });
      
      console.log(this.nameArray);
      this.nameArray2 = this.nameArray.join();
      console.log(this.nameArray2);
+    // this.CsvService.downloadCSVTemplate(this.nameArray2);
       // this.downloadCSV(this.nameArray2);
      }, err=>{
        
@@ -50,5 +54,10 @@ export class BulkRecordsComponent implements OnInit {
      });
     
   }
+
+  downloadCSV(data){
+    this.CsvService.downloadCSVTemplate(data);
+  }
+
 
 }
