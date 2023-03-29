@@ -5,6 +5,7 @@ import { AppConfig } from '../app.config';
 import { SchemaService } from '../services/data/schema.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from "../../app/services/theme/theme.service";
+import { GeneralService } from '../services/general/general.service';
 
 declare var $: any;
 
@@ -25,10 +26,12 @@ export class HeaderComponent implements OnInit {
   indexPre;
   ELOCKER_THEME: string;
   entityName: string;
+  logoUrl: any;
+  apiUrl: any;
 
   constructor(
     public router: Router, private config: AppConfig, public schemaService: SchemaService,
-    public translate: TranslateService, private themeService: ThemeService
+    public translate: TranslateService, private themeService: ThemeService, private generalService: GeneralService
   ) { }
 
   async ngOnInit() {
@@ -38,6 +41,10 @@ export class HeaderComponent implements OnInit {
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
 
     this.entityName = localStorage.getItem('entity');
+    
+    if(this.entityName == 'Issuer'){
+      await this.getData();
+    }
 
     if (!this.ELOCKER_THEME) {
       localStorage.setItem('ELOCKER_THEME', "default");
@@ -74,6 +81,12 @@ export class HeaderComponent implements OnInit {
       console.error('headers.json not found in src/assets/config/ - You can refer to examples folder to create the file')
     });
   }
+
+  async getData() {
+    this.generalService.getData('Issuer').subscribe((res) => {
+      this.logoUrl = res[0].logoUrl;
+    });
+}
 
   languageChange(lang) {
     if (this.langCode != lang.target.value) {
