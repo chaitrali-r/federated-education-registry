@@ -121,7 +121,6 @@ export class BulkRecordsComponent implements OnInit {
       this.showReportPopup();
     }, err => {
       this.isgetCsvReport = true;
-      this.showReportPopup();
       console.log(err);
     });
   }
@@ -132,8 +131,8 @@ export class BulkRecordsComponent implements OnInit {
     this.domain = this.config.getEnv('domainName');
    // this.generalService.getData(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID, true).subscribe((res) => {
     this.dataService.getWheader(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID).subscribe((res) => {
- // this.bulkReport = res;
- this.downloadCSV(res);
+  let bulkReport: any = '`' + res + '`'; 
+ this.downloadCSV(bulkReport);
    console.log(res);
      
     }, err => {
