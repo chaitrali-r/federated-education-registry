@@ -12,16 +12,16 @@
       
     </div>  
       
-    <nav class="navbar navbar-expand-lg navbar-light bg-header nav-b navbar-inverse" [ngClass]="{'bg-pink': (entityName != 'issue' && entityName != 'Issuer'), 'bg-header' : (entityName == 'issue' || entityName == 'Issuer')}">
+    <nav class="navbar navbar-expand-lg navbar-light bg-header nav-b navbar-inverse" [ngClass]="{'bg-header1': (entityName != 'issue' && entityName != 'Issuer'), 'bg-header' : (entityName == 'issue' || entityName == 'Issuer')}">
         <div class="container-fluid custom-header">
             <button class="navbar-toggler p-0 m-0 custom-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars toggler"></i>
                 <!-- <span class="navbar-toggler-icon"></span> -->
             </button>
             <div class="nav-item active logo-text d-flex p-2" style="width: auto;">
-                <a role="link" aria-disabled="true" *ngIf="entityName && entityName != 'issue' && entityName != 'Issuer'"><img class="logo" src={{logo}} /></a>
+                <!-- <a role="link" aria-disabled="true" *ngIf="entityName && entityName != 'issue' && entityName != 'Issuer'"><img class="logo" src={{logo}} /></a> -->
                 <!-- <a role="link" aria-disabled="true" *ngIf="entityName == 'issue' || entityName == 'Issuer'"><img class="logo-ncert" src="/assets/images/ncertlogo1.png" /></a> -->
-                <img class="logo ml-2" *ngIf="!entityName" src="assets/images/Logo-MOE.png" />
+                <!-- <img class="logo ml-2" *ngIf="!entityName" src="assets/images/Logo-MOE.png" /> -->
                 <img class="logo ml-2" src="assets/images/education.png" />
                 <a role="link" aria-disabled="true" *ngIf="entityName == 'issue' || entityName == 'Issuer'"><img class="logo ml-2"  src={{logoUrl}} /></a>
                           
