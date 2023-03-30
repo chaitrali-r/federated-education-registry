@@ -107,6 +107,8 @@ const routes: Routes = [
   { path: 'records/:document/:osid', component: GetRecordsComponent , canActivate: [AuthGuard] },
  { path: 'add-records/:document/:osid', component: AddRecordsComponent , canActivate: [AuthGuard] },
  { path: 'bulk-records/:osid', component: BulkRecordsComponent , canActivate: [AuthGuard] },
+ { path: 'bulk-records/:document/:osid', component: BulkRecordsComponent , canActivate: [AuthGuard] },
+
  { path: 'certificate/:form', component: AddCertificateComponent , canActivate: [AuthGuard] },
  { path: 'certificate', component: AddCertificateComponent , canActivate: [AuthGuard] },
 

@@ -21,7 +21,7 @@ export class DataService {
   constructor(
     private http: HttpClient,
     public keycloak: KeycloakService) {
-      this.token = localStorage.getItem('token');
+      this.token =   this.keycloak.getToken();
   }
 
 /**
@@ -159,6 +159,22 @@ export class DataService {
         }
         return observableOf(data);
       }));
+  }
+
+
+  getWheader(url): Observable<any> {
+    const httpOptions: HttpOptions = {
+      headers: {
+        Accept: '*/*',
+         Authorization: 'Bearer ' +  this.keycloak.getToken()
+      }
+    };
+
+    return this.http.get(url, httpOptions).pipe(
+      mergeMap((data: any) => {
+        return observableOf(data);
+      }));
+
   }
 
 }

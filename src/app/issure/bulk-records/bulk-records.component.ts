@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { DataService } from 'src/app/services/data/data-request.service'
 import { CsvService } from 'src/app/services/csv/csv.service';
 
 import { AppConfig } from 'src/app/app.config';
@@ -23,68 +24,131 @@ export class BulkRecordsComponent implements OnInit {
   fileName = '';
   domain: any;
   apiUrl: string;
-  constructor(public router: Router, public route: ActivatedRoute,
+  schemaName: string;
+  filedata: any;
+  csvReport: boolean;
+  uploadFileList: any;
+  isgetCsvReport: boolean;
+  item: any;
+  constructor(public router: Router, public route: ActivatedRoute, public dataService :DataService,
     public generalService: GeneralService, private http: HttpClient, public CsvService: CsvService,
-    private config: AppConfig){
-      this.osid = this.route.snapshot.paramMap.get('osid'); 
-    }
-  ngOnInit(): void {
-   
-   
-
-    console.log(this.osid);
-
-    
-
-
-
-    this.generalService.getData('/Schema/' + this.osid).subscribe((res) => {
-     console.log(res);
-     this.schemaObj = JSON.parse(res.schema);
-     this.tempObj = this.schemaObj.definitions[this.schemaObj.title].properties;
-       console.log(this.tempObj);
-       Object.values(this.tempObj).forEach(entry => {
-         console.log(entry['title']);
-         this.nameArray.push(entry['title']); 
-       
-       });
-     
-     console.log(this.nameArray);
-     this.nameArray2 = this.nameArray.join();
-     console.log(this.nameArray2);
-    // this.CsvService.downloadCSVTemplate(this.nameArray2);
-      // this.downloadCSV(this.nameArray2);
-     }, err=>{
-       
-       console.log(err);
-     });
-    
+    private config: AppConfig) {
+    this.osid = this.route.snapshot.paramMap.get('osid');
+    this.schemaName = this.route.snapshot.paramMap.get('document');
   }
 
-  downloadCSV(data){
+  ngOnInit(): void {
+   
+    this.generalService.getData('/Schema/' + this.osid).subscribe((res) => {
+      console.log(res);
+      this.schemaObj = JSON.parse(res.schema);
+      this.tempObj = this.schemaObj.definitions[this.schemaObj.title].properties;
+      console.log(this.tempObj);
+      Object.values(this.tempObj).forEach(entry => {
+        console.log(entry['title']);
+        this.nameArray.push(entry['title']);
+
+      });
+
+      console.log(this.nameArray);
+      this.nameArray2 = this.nameArray.join();
+      console.log(this.nameArray2);
+      // this.CsvService.downloadCSVTemplate(this.nameArray2);
+      // this.downloadCSV(this.nameArray2);
+    }, err => {
+
+      console.log(err);
+    });
+
+  }
+
+  downloadCSV(data) {
     this.CsvService.downloadCSVTemplate(data);
   }
 
   onFileSelected(event) {
 
-    const file:File = event.target.files[0];
+    const file: File = event.target.files[0];
+    this.filedata = File = event.target.files[0];
 
     if (file) {
 
-        this.fileName = file.name;
+      this.fileName = file.name;
 
-        const formData = new FormData();
-        this.domain = this.config.getEnv('domainName');
-        formData.append("file", file);
-        this.apiUrl = this.domain + "/bulk/v1/uploadFiles/ScholarshipForTopClassStudents";
-        this.generalService.postData(this.apiUrl, formData).subscribe((res) => {
-          console.log(res);
-         
-          }, err=>{
-          
-            console.log(err);
-          });
+      const formData = new FormData();
+   /*   this.domain = this.config.getEnv('domainName');
+      formData.append("file", file);
+      this.apiUrl = this.domain + "/bulk/v1/uploadFiles/" + this.schemaName;
+      this.generalService.postData(this.apiUrl, formData).subscribe((res) => {
+        console.log(res);
+
+      }, err => {
+
+        console.log(err);
+      });*/
     }
-}
+  }
 
+  uploadFile()
+  {
+    this.fileName = this.filedata.name;
+
+    const formData = new FormData();
+    this.domain = this.config.getEnv('domainName');
+  
+    formData.append("file", this.filedata);
+    this.apiUrl = this.domain + "/bulk/v1/uploadFiles/" + this.schemaName;
+    
+    this.generalService.postData(this.apiUrl, formData).subscribe((res) => {
+      console.log(res);
+      this.item = res;
+      this.csvReport = true;
+      this.getAllUploadedFile();
+
+    }, err => {
+      this.csvReport = true;
+      console.log(err);
+    });
+
+  }
+
+  getAllUploadedFile()
+  {
+    this.domain = this.config.getEnv('domainName');
+    this.generalService.getData(this.domain + '/bulk/v1/bulk/uploadedFiles', true).subscribe((res) => {
+      console.log(res);
+      this.uploadFileList = res[res.length - 1];
+      this.showReportPopup();
+    }, err => {
+      this.isgetCsvReport = true;
+      this.showReportPopup();
+      console.log(err);
+    });
+  }
+
+  downloadErrFile()
+  {
+
+    this.domain = this.config.getEnv('domainName');
+   // this.generalService.getData(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID, true).subscribe((res) => {
+    this.dataService.getWheader(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID).subscribe((res) => {
+ // this.bulkReport = res;
+ //this.downloadCSV(res);
+   console.log(res);
+     
+    }, err => {
+      this.csvReport = true;
+      console.log(err);
+    });
+  
+  }
+
+  showReportPopup(id = 'bulkUploadModalSuccess') {
+    var button = document.createElement("button");
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', `#${id}`);
+    document.body.appendChild(button)
+    button.click();
+    button.remove();
+  }
 }

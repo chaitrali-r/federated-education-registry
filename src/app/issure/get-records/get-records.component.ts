@@ -30,12 +30,6 @@ export class GetRecordsComponent implements OnInit {
       this.documentName = this.route.snapshot.paramMap.get('document'); 
       this.osid = this.route.snapshot.paramMap.get('osid'); 
 
-      console.log(this.osid);
- 
-      
-
-       
-
    // this.item = this.router.getCurrentNavigation().extras.state.item;
 
     // if( this.item){
@@ -80,17 +74,7 @@ this.getRecords();
     };
    
     this.downloadPDF();
-    // this.http.get('https://sunbird-certificate-demo.xiv.in/registry/api/v1/' + this.documentName + '/' + item.osid, {headers}).subscribe(
-    //   (data) => {
-       
-    //     console.log(data);
-    //   },
-    //   (error) => {
-    //     console.log('getPDF error: ',error);
-    //   }
-    // );
-
-   
+    
   }
   onPress(){
     this.router.navigateByUrl['/pdf-view'];
