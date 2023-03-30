@@ -30,6 +30,7 @@ export class BulkRecordsComponent implements OnInit {
   uploadFileList: any;
   isgetCsvReport: boolean;
   item: any;
+  colomNames: any;
   constructor(public router: Router, public route: ActivatedRoute, public dataService :DataService,
     public generalService: GeneralService, private http: HttpClient, public CsvService: CsvService,
     private config: AppConfig) {
@@ -58,6 +59,20 @@ export class BulkRecordsComponent implements OnInit {
     }, err => {
 
       console.log(err);
+    });
+
+    
+
+    this.domain = this.config.getEnv('domainName');
+    this.dataService.getWheader(this.domain + '/bulk/v1/bulk/sample/' + this.schemaName).subscribe((res) => {
+      console.log(res);
+      this.colomNames = res;
+    }, err => {
+      console.log(err);
+      if(err.status == 200)
+      {
+        this.colomNames =  err.error.text
+      }
     });
 
   }
@@ -132,11 +147,17 @@ export class BulkRecordsComponent implements OnInit {
    // this.generalService.getData(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID, true).subscribe((res) => {
     this.dataService.getWheader(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID).subscribe((res) => {
   let bulkReport: any = '`' + res + '`'; 
- this.downloadCSV(bulkReport);
-   console.log(res);
+  console.log(bulkReport);
      
+  this.CsvService.downloadCSVTemplate(bulkReport);
+  
     }, err => {
-      this.csvReport = true;
+      if(err.status == 200)
+      {
+        let bulkReport: any = '`' + err.error.text + '`'; 
+        console.log(bulkReport);
+        this.CsvService.downloadCSVTemplate(bulkReport);
+      }
       console.log(err);
     });
   
