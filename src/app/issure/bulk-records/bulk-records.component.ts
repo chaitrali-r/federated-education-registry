@@ -38,7 +38,7 @@ export class BulkRecordsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
+
     this.generalService.getData('/Schema/' + this.osid).subscribe((res) => {
       console.log(res);
       this.schemaObj = JSON.parse(res.schema);
@@ -133,7 +133,7 @@ export class BulkRecordsComponent implements OnInit {
    // this.generalService.getData(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID, true).subscribe((res) => {
     this.dataService.getWheader(this.domain + '/bulk/v1/download/' + this.uploadFileList.ID).subscribe((res) => {
  // this.bulkReport = res;
- //this.downloadCSV(res);
+ this.downloadCSV(res);
    console.log(res);
      
     }, err => {
@@ -150,5 +150,10 @@ export class BulkRecordsComponent implements OnInit {
     document.body.appendChild(button)
     button.click();
     button.remove();
+  }
+
+  backTo()
+  {
+    this.router.navigateByUrl('records/' + this.schemaName + '/' + this.osid)
   }
 }

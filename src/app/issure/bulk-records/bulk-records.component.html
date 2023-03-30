@@ -64,7 +64,7 @@
           </div>
           <div class="modal-body">
             <div class="d-flex flex-column justify-content-center align-items-center">
-              <div class="p14 mb-2 mt-2"> {{item?.Filename}}  {{'FILE_SUCCESSFULLY_UPLOADED' | translate}}</div>
+              <div class="p14 mb-2 mt-2"> {{item?.Filename}} {{'FILE_SUCCESSFULLY_UPLOADED' | translate}}</div>
               <div class="d-flex">
                 <div class="mb-2 mt-1 mr-1">
                   <i class="fa fa-check-circle" style="color: green;" aria-hidden="true"></i>
@@ -81,7 +81,7 @@
                 <span class="primary-text-color" (click)="downloadErrFile()"> {{'DOWNLOAD_FILE' | translate}} </span>
                 <span> {{'VIEW_ERROR' | translate}}</span>
               </div>
-              <button id="" type="submit" class="btn btn-primary submit-button mb-2" data-dismiss="modal">{{'OK' |
+              <button id="" type="button" (click)="backTo()" class="btn btn-primary submit-button mb-2" data-dismiss="modal">{{'OK' |
                 translate}}</button>
             </div>
           </div>
