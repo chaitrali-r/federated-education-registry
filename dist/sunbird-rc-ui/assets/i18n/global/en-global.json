@@ -183,7 +183,23 @@
     "ANYONE" : "Anyone",
     "SOMETHING_WENT_WRONG": "Something went wrong while uploading files, please try again",
     "DEMO":"This is a demo of the Education Portal. Check documentation",
-    "HERE" : "here"
-
+    "HERE" : "here",
+    "ADD_BULK_RECORDS":"Add Bulk Records",
+    "DOWNLOAD_SAMPLE_TEMPLATE":"Download sample template to upload records.",
+    "DOWNLOAD_SAMPLE":"Download Sample",
+    "UPLOAD_FILES":"Upload File",
+    "BROWSE_FILE":"Browse File",
+    "FILE_IN_CSV_FORMAT":"File must be in csv format",
+    "IMPORT_RECORDS":"Import Records",
+    "DOWNLOAD_UPLOADED":"Document Uploaded",
+    "FILE_SUCCESSFULLY_UPLOADED":"file successfully uploaded",
+    "RECORDS_SUCCESSFULLY_UPLOADED":"Records were successfully uploaded",
+    "RECORDS_FAILED":"Records were failed",
+    "DOWNLOAD_FILE":"Download file",
+    "VIEW_ERROR":" to view error messages",
+    "DOWNLOAD_NOT_UPLOADED":"Document Not Uploaded",
+    "COULD_NOT_UPLOAD":"Could not upload",
+    "UPLOAD_AGAIN":"Please upload again."
+    
     
 }
