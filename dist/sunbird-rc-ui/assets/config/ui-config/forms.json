@@ -39,12 +39,11 @@
                                     "title": false,
                                     "fields": [
                                         {
-                                            "name": "mobile",
+                                            "name": "email",
                                             "required": true,
-                                            "type": "verify-code",
                                             "validation": {
-                                                "pattern": "[6-9]{1}[0-9]{9}",
-                                                "message": "MOBILE_NO_MUST_10_DIGIT"
+                                                "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z0-9.-]+$",
+                                                "message": "EMAILT_NOT_VALID"
                                             }
                                         }
                                     ]
