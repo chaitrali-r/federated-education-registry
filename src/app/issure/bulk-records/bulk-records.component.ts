@@ -20,6 +20,9 @@ export class BulkRecordsComponent implements OnInit {
   tempObj: any;
   nameArray = [];
   nameArray2;
+  fileName = '';
+  domain: any;
+  apiUrl: string;
   constructor(public router: Router, public route: ActivatedRoute,
     public generalService: GeneralService, private http: HttpClient, public CsvService: CsvService,
     private config: AppConfig){
@@ -32,6 +35,9 @@ export class BulkRecordsComponent implements OnInit {
     console.log(this.osid);
 
     
+
+
+
     this.generalService.getData('/Schema/' + this.osid).subscribe((res) => {
      console.log(res);
      this.schemaObj = JSON.parse(res.schema);
@@ -59,5 +65,26 @@ export class BulkRecordsComponent implements OnInit {
     this.CsvService.downloadCSVTemplate(data);
   }
 
+  onFileSelected(event) {
+
+    const file:File = event.target.files[0];
+
+    if (file) {
+
+        this.fileName = file.name;
+
+        const formData = new FormData();
+        this.domain = this.config.getEnv('domainName');
+        formData.append("file", file);
+        this.apiUrl = this.domain + "/bulk/v1/uploadFiles/ScholarshipForTopClassStudents";
+        this.generalService.postData(this.apiUrl, formData).subscribe((res) => {
+          console.log(res);
+         
+          }, err=>{
+          
+            console.log(err);
+          });
+    }
+}
 
 }

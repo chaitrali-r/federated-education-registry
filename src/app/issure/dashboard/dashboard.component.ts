@@ -158,9 +158,9 @@ export class DashboardComponent implements OnInit {
     this.apiUrl = this.domain + "/metrics/v1/metrics"
     console.log(this.apiUrl);
     this.generalService.getData(this.apiUrl,true).subscribe((res) => {
-      console.log(res);
-      this.recordCount = res;
-      console.log(typeof(this.recordCount))
+     console.log(res);
+     this.recordCount = res;
+     console.log(typeof(this.recordCount))
      
     });
   
