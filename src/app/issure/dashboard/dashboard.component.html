@@ -47,7 +47,13 @@
             <div class="d-flex flex-row flex-wrap p-0">
                 <div *ngFor="let item of templatesItems" class="card card-block mr-2 mb-2 p-4  col-sm-3">
                     <p class="p16 mb-2 font-600">{{item?.name}}</p>
-                    <!-- <h2 class="font-600">0</h2> -->
+                    <div *ngFor="let myItem of recordCount | keyvalue">
+                       
+                      <div *ngIf="myItem.key === item?.name.toLowerCase()"> 
+                        <h2 class="font-600">{{myItem.value}}</h2>
+                        </div> 
+                    </div>
+                  
                     <!-- <p class="p12 mb-1">Record</p> -->
                     <a routerLink="/records/{{item?.name}}/{{item?.osid}}"
                         class="my-2 fs-14 btn btn-sec-bg submit-button align-self-start nav-link-color">View / Add</a>
