@@ -37,6 +37,7 @@ export class AddRecordsComponent implements OnInit {
   property: any = {};
   schemaName: any;
   item: any;
+  osid1:any
   fieldKey: any;
   fieldName;
   sitems: any;
@@ -52,6 +53,7 @@ export class AddRecordsComponent implements OnInit {
     public generalService: GeneralService,
     public http: HttpClient) {
     this.schemaName = this.route.snapshot.paramMap.get('document');
+    this.osid1 = this.route.snapshot.paramMap.get('osid');
 
   }
 
@@ -303,7 +305,7 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
     console.log(this.model);
     this.generalService.postData('/' + this.schemaName, this.model).subscribe((res) => {
 
-      this.router.navigate(['records/' + this.schemaName]);
+      this.router.navigate(['records/' + this.schemaName + "/" + this.osid1]);
     })
   }
 
