@@ -303,6 +303,7 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
 
   submit() {
     console.log(this.model);
+    this.model['nameofScheme'] = this.schemaName;
     this.generalService.postData('/' + this.schemaName, this.model).subscribe((res) => {
 
       this.router.navigate(['records/' + this.schemaName + "/" + this.osid1]);
