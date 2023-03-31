@@ -159,7 +159,9 @@ textarea.form-control {
     border-color: var(--primaryColor) !important;
     border: 0 !important;
 }
-
+.vl {
+    border-left: 3px solid #CCCCCC;
+    }
 .btn-style {
     border-radius: 10px !important;
     height: 40px;
