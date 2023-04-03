@@ -23,8 +23,7 @@
                 <!-- <a role="link" aria-disabled="true" *ngIf="entityName == 'issue' || entityName == 'Issuer'"><img class="logo-ncert" src="/assets/images/ncertlogo1.png" /></a> -->
                 <!-- <img class="logo ml-2" *ngIf="!entityName" src="assets/images/Logo-MOE.png" /> -->
                 <img class="logo ml-2" src="assets/images/education.png" />
-                <a role="link" aria-disabled="true" *ngIf="entityName == 'issue' || entityName == 'Issuer'"><img class="logo ml-2"  src={{logoUrl}} /></a>
-                          
+
             </div>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ng-template [ngIf]="headerSchema?.left">
@@ -44,7 +43,11 @@
                     </ul>
                 </ng-template>
                 <ng-template [ngIf]="headerSchema?.right">
-                    <ul *ngFor="let header of headerSchema.right" class="navbar-nav ms-auto">
+                    <ul *ngFor="let header of headerSchema.right" class="navbar-nav ms-auto d-flex align-items-center">
+                        <div class="d-flex">
+                            <a role="link" aria-disabled="true" *ngIf="entityName == 'issue' || entityName == 'Issuer'"><img class="mr-2" src={{logoUrl}} /></a> 
+                            <div class="vl mr-2"></div> 
+                            </div>
                         <li class="nav-item">
                             <a *ngIf="header?.title && entityName != 'issue' && entityName != 'Issuer'" class="nav-link p14 {{header?.className}} {{header?.activeTab}}" [routerLink]="[header.redirectTo]">{{header?.title | translate}}</a>
                             <a *ngIf="header?.title && (entityName == 'issue' || entityName == 'Issuer')" class=" p14 {{header?.className}}" [ngClass]="{'nav-link': (entityName != 'issue' && entityName != 'Issuer'), 'mr-3' : (entityName == 'issue' || entityName == 'Issuer')}" [routerLink]="[header.redirectTo]">{{header?.title | translate}} </a>
