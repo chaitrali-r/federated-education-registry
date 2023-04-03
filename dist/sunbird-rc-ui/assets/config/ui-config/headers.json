@@ -177,6 +177,17 @@
                     }
                 ]
             }
+        },
+        {
+            "list":{
+                "right": [
+                    {
+                        "title": "LOGOUT",
+                        "redirectTo": "/logout",
+                        "className" : "font-weight-bold"
+                    }
+                ]
+            }
         }
     ]
 }

@@ -40,11 +40,11 @@ export class KeycloakloginComponent implements OnInit {
         this.profileUrl = '/dashboard';
       }else{
        // this.profileUrl = '/profile/'+this.entity;
-       if(this.entity.includes('student') || this.entity.includes('teacher') || this.entity.includes('institute'))
+       if(this.entity.includes('Student') || this.entity.includes('Teacher') || this.entity.includes('Institute'))
        {
         this.profileUrl = '/profile/'+this.entity;
        }else{
-        this.profileUrl = '/student/attestation/verifiable-credential';
+        this.profileUrl = '/list/verifiable-credential';
 
        }
       }

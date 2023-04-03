@@ -87,6 +87,7 @@ const routes: Routes = [
 { path: 'page/:page', component: PagesComponent },
 
 // Tables
+{ path: ':entity/:table', component: TablesComponent, canActivate: [AuthGuard] },
 { path: ':entity/attestation/:table', component: TablesComponent, canActivate: [AuthGuard] },
 { path: ':entity/attestation/:table/:id', component: AttestationComponent, canActivate: [AuthGuard] },
 { path: ':entity/documents', component: DocumentsComponent, canActivate: [AuthGuard] },
