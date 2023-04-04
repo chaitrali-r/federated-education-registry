@@ -111,7 +111,6 @@ export class BulkRecordsComponent implements OnInit {
     const formData = new FormData();
     this.domain = this.config.getEnv('domainName');
   
-
     if(this.filedata.type === "text/csv"){
 
       formData.append("file", this.filedata);
