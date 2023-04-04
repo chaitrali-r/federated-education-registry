@@ -209,10 +209,10 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
       
     }
 
-    if(fieldObj.key == 'studentName' || fieldObj.key == 'name')
+    /*if(fieldObj.key == 'studentName' || fieldObj.key == 'name')
         {
 
-        /*  tempObj['type'] = "autocomplete";
+          tempObj['type'] = "autocomplete";
         //  tempObj['templateOptions']['label'] = 'Student name';
           tempObj['templateOptions']['label'] = 'identityDetails.fullName';
           tempObj['templateOptions']['placeholder'] = 'Enter Student Name';
@@ -254,8 +254,8 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
             }
             return observableOf(this.searchResult);
           }
-          */
-        }
+         
+        } */
 
     if (!fieldObj['templateOptions'].hasOwnProperty('label') || fieldObj.templateOptions.label == undefined) {
 
