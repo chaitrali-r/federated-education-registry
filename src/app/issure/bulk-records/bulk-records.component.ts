@@ -111,19 +111,27 @@ export class BulkRecordsComponent implements OnInit {
     const formData = new FormData();
     this.domain = this.config.getEnv('domainName');
   
-    formData.append("file", this.filedata);
-    this.apiUrl = this.domain + "/bulk/v1/uploadFiles/" + this.schemaName;
-    
-    this.generalService.postData(this.apiUrl, formData).subscribe((res) => {
-      console.log(res);
-      this.item = res;
-      this.csvReport = true;
-      this.getAllUploadedFile();
 
-    }, err => {
-      this.csvReport = true;
-      console.log(err);
-    });
+    if(this.filedata.type === "text/csv"){
+
+      formData.append("file", this.filedata);
+
+      this.apiUrl = this.domain + "/bulk/v1/uploadFiles/" + this.schemaName;
+      
+      this.generalService.postData(this.apiUrl, formData).subscribe((res) => {
+        console.log(res);
+        this.item = res;
+        this.csvReport = true;
+        this.getAllUploadedFile();
+  
+      }, err => {
+        this.csvReport = true;
+        console.log(err);
+      });
+    }else{
+       this.showReportFailPopup();
+    }
+   
 
   }
 
@@ -134,9 +142,11 @@ export class BulkRecordsComponent implements OnInit {
       console.log(res);
       this.uploadFileList = res[res.length - 1];
       this.showReportPopup();
+     
     }, err => {
       this.isgetCsvReport = true;
       console.log(err);
+      this.showReportFailPopup();
     });
   }
 
@@ -164,6 +174,15 @@ export class BulkRecordsComponent implements OnInit {
   }
 
   showReportPopup(id = 'bulkUploadModalSuccess') {
+    var button = document.createElement("button");
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', `#${id}`);
+    document.body.appendChild(button)
+    button.click();
+    button.remove();
+  }
+
+  showReportFailPopup(id = 'bulkUploadModalfail') {
     var button = document.createElement("button");
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', `#${id}`);

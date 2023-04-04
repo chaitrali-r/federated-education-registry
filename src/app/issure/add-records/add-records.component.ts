@@ -242,7 +242,7 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
                
                 //  items = items.filter(x => {  (x['identityDetails']['fullName']).toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1
                 //  }
-                //  );
+              //  );
                 
               
                 if (items) {
