@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1680528097480,
+  "timestamp": 1680605615261,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,8 +13,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.c12c9d3049d2aa1a52d8.js",
-        "/main-es5.c12c9d3049d2aa1a52d8.js",
+        "/main-es2015.fd99a8030f0357196b1c.js",
+        "/main-es5.fd99a8030f0357196b1c.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.1a07f4ea4946702ff8a5.js",
         "/polyfills-es5.de35dcdd8d27dff405c1.js",
@@ -757,7 +757,7 @@
     "/assets/config/ui-config/search.json": "5096b30d8abf7720a7c139105765b49218a78e30",
     "/assets/config/ui-config/tables.json": "8c51bc84efaa03a93a98e8f58c4717089f952e46",
     "/assets/i18n/global/en-global.json": "751a48ad4b2fe0c864598d394a683f50a6cd8f8d",
-    "/assets/i18n/global/hi-global.json": "a644119af4c1835bffc034ef0e62008e7921231c",
+    "/assets/i18n/global/hi-global.json": "f0313dc4f99933d0392d48bd1db2fbddba23a2a4",
     "/assets/i18n/local/en-local.json": "a676dfc707fbe1df039875fdc984630ee52f7fc4",
     "/assets/i18n/local/hi-local.json": "61b1c3948459117638edcb2fa0247bdcf32291dd",
     "/assets/icons/icon-128x128.png": "395162a06033da188369a574c46398176d7ff681",
@@ -1098,10 +1098,10 @@
     "/fa-solid-900.be9ee23c0c6390141475.ttf": "eb8914f6b1797b45ee0883e6089d92695d9f9441",
     "/fa-solid-900.eeccf4f66002c6f2ba24.woff": "a22acd7697f36e7d4cc31a853c70e776eac54bb1",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "40784ae063f76227ed27e9c1d8a77f867aace1cc",
+    "/index.html": "d837b65c8918ed4e548bda55af50ba620762268c",
     "/jsoneditor-icons.15f2789dd231f36d43a4.svg": "ab494ea3944f654d927ce67bc0b515de6c84d836",
-    "/main-es2015.c12c9d3049d2aa1a52d8.js": "bba9fbf8c001a2cbeb01811f327c76edfd39fe64",
-    "/main-es5.c12c9d3049d2aa1a52d8.js": "962ec9a49bd060d00aaeb6e8266049bea4154f91",
+    "/main-es2015.fd99a8030f0357196b1c.js": "5a8f4c53b5bf1ddd94bfb30984499406d0448bcd",
+    "/main-es5.fd99a8030f0357196b1c.js": "d1122eb290b9fa58d4dbe5fdb7169618169b1225",
     "/main-fonts.404be73e1ad40b1da282.svg": "b8112fc98d4fc314bfea5363657dc1e8ce9dd475",
     "/main-fonts.4d0a76596dbbbfbfe5ee.ttf": "25139f418b5db6b30afd6ae33072ffb2e2e52b6c",
     "/main-fonts.b8dc46886b7e216a02be.eot": "bd020ef1d5dec73c91ca4054052c16f90ace2f8c",
