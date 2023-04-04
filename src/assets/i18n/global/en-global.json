@@ -193,7 +193,7 @@
     "IMPORT_RECORDS":"Import Records",
     "DOWNLOAD_UPLOADED":"Document Uploaded",
     "FILE_SUCCESSFULLY_UPLOADED":"file uploaded",
-    "RECORDS_SUCCESSFULLY_UPLOADED":"Records were uploaded",
+    "RECORDS_SUCCESSFULLY_UPLOADED":"Records were successfully uploaded",
     "RECORDS_FAILED":"Records were failed",
     "DOWNLOAD_FILE":"Download file",
     "VIEW_ERROR":" to view error messages",

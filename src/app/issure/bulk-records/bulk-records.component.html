@@ -33,7 +33,7 @@
           <input type="file" id="file-upload" name="uploaded-file" accept="text/csv">
         </form> -->
 
-        <input type="file" class="file-input"
+        <input type="file" class="file-input" accept=".csv"
        (change)="onFileSelected($event)" #fileUpload>
 
 <div class="file-upload">
@@ -42,13 +42,13 @@
 
     <button mat-mini-fab color="primary" class="upload-btn"
       (click)="fileUpload.click()">
-        <mat-icon>attach_file</mat-icon>
+        <mat-icon>import_file</mat-icon>
     </button>
 </div>
       </div>  
-      <div type="button" class="btn btn-size btn-primary-blue btn-style font-weight-bold p-2  p14"
+      <div type="button" class="btn btn-size btn-primary-blue btn-style font-weight-bold p-2  p14"  
       (click)="uploadFile()"> <i
-          class="fa fa-upload mr-1" aria-hidden="true"></i>{{'IMPORT_RECORDS' | translate}} </div>
+          class="fa fa-upload mr-1" aria-hidden="true"></i>{{'UPLOAD' | translate}} </div>
     </div>
 
     <!--Bulk Upload Modal- successful -->
@@ -64,12 +64,12 @@
           </div>
           <div class="modal-body">
             <div class="d-flex flex-column justify-content-center align-items-center">
-              <div class="p14 mb-2 mt-2"> {{uploadFileList?.Filename}} {{'FILE_SUCCESSFULLY_UPLOADED' | translate}}</div>
+              <div class="p14 mb-2 mt-2"> {{uploadFileList?.Filename}} {{'FILE_SUCCESSFULLY_UPLOADED' | translate}} </div>
               <div class="d-flex">
-                <div class="mb-2 mt-1 mr-1">
+                <div *ngIf="item?.success" class="mb-2 mt-1 mr-1">
                   <i class="fa fa-check-circle" style="color: green;" aria-hidden="true"></i>
                 </div>
-                <div class="p14 mb-2 mt-2 fw-bold">{{item?.success}} {{'RECORDS_SUCCESSFULLY_UPLOADED' | translate}}</div>
+                <div *ngIf="item?.success" class="p14 mb-2 mt-2 fw-bold">{{item?.success}} {{'RECORDS_SUCCESSFULLY_UPLOADED' | translate}}</div>
               </div>
               <div class="d-flex">
                 <div class="mb-2 mt-1 mr-1">
@@ -103,7 +103,7 @@
           </div>
           <div class="modal-body">
             <div class="d-flex flex-column justify-content-center align-items-center">
-              <div class="p14 mb-2 mt-2"> {{'COULD_NOT_UPLOAD' | translate}} {{'Records_Jan2021toMar2021.csv'}} file.</div>
+              <div class="p14 mb-2 mt-2"> {{'COULD_NOT_UPLOAD' | translate}} {{fileName}} file.</div>
               <div class="p14 mb-2 mt-2"> {{'UPLOAD_AGAIN' | translate}}</div>
               <button id="" type="submit" class="btn btn-primary submit-button mb-2" data-dismiss="modal">{{'OK' |
                 translate}}</button>
