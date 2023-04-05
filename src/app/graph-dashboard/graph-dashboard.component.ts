@@ -7,7 +7,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   styleUrls: ['./graph-dashboard.component.scss']
 })
 export class GraphDashboardComponent implements OnInit {
-  url: string = "https://sunbirdrc-sandbox.xiv.in/public/dashboards/awFMgbKLfOMzN1wlNcHRvIU9aWSzAV7aysMjBZcI?org_slug=default";
+  url: string = "https://sunbirdrc-sandbox.xiv.in/public/dashboards/ezgFN5jlbnWCOe8dD6I1JbuUXeDsTq9Pj7s0Lh8N?org_slug=default";
   urlSafe: SafeResourceUrl;
   constructor(public sanitizer: DomSanitizer) { }
 
