@@ -364,6 +364,22 @@ a {
    // color: var(--linkColor) !important;
 }
 
+.file-upload{
+    border: 1px solid #8D9091;
+    width: 300px;
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.upload-btn{
+    border: none;
+    background: transparent;
+}
+.browse-file{
+margin-top: auto;
+margin-bottom: auto;
+}
 // /* Importing Bootstrap SCSS file. */
 // @import '~bootstrap/scss/bootstrap';
 button.calendar,
