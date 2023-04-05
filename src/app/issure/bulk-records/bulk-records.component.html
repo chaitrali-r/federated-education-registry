@@ -71,13 +71,13 @@
                 </div>
                 <div *ngIf="item?.success" class="p14 mb-2 mt-2 fw-bold">{{item?.success}} {{'RECORDS_SUCCESSFULLY_UPLOADED' | translate}}</div>
               </div>
-              <div class="d-flex">
+              <div *ngIf="item?.error" class="d-flex">
                 <div class="mb-2 mt-1 mr-1">
                   <i class="fa fa-info-circle" style="color: red;"></i>
                 </div>
                 <div class="p14 mb-2 mt-2 fw-bold">{{item?.error}} {{'RECORDS_FAILED' | translate}}</div>
               </div>
-              <div class="p14 mb-2 mt-2 fw-bold ">
+              <div *ngIf="item?.error" class="p14 mb-2 mt-2 fw-bold ">
                 <span class="primary-text-color" (click)="downloadErrFile()"> {{'DOWNLOAD_FILE' | translate}} </span>
                 <span> {{'VIEW_ERROR' | translate}}</span>
               </div>

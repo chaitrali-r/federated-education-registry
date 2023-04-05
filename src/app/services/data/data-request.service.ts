@@ -21,7 +21,9 @@ export class DataService {
   constructor(
     private http: HttpClient,
     public keycloak: KeycloakService) {
-      this.token =   this.keycloak.getToken();
+       this.keycloak.getToken().then((token)=>{
+        this.token = token;
+      })
   }
 
 /**
@@ -166,7 +168,7 @@ export class DataService {
     const httpOptions: HttpOptions = {
       headers: {
         Accept: '*/*',
-         Authorization: 'Bearer ' +  this.keycloak.getToken()
+         Authorization: 'Bearer ' +  this.token
       }
     };
 
