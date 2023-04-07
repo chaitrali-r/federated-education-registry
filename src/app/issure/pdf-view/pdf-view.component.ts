@@ -56,7 +56,7 @@ export class PdfViewComponent implements OnInit {
     this.pdfName = this.documentName;
     let headerOptions = new HttpHeaders({
      // 'template': 'https://gist.githubusercontent.com/varadeth/536b6e210180029cd5cf4f1e6a5ff304/raw/a2e5d7f908382ff5ab5f789a5ba3b7ff274bcf35/ntse_credential.html',
-      'Accept': 'application/pdf',
+      'Accept': 'image/svg+xml',
       'template-key' : 'html'
     });
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
@@ -64,13 +64,13 @@ export class PdfViewComponent implements OnInit {
     this.http.get(this.config.getEnv('baseUrl')  + '/'  + this.documentName + '/' + this.vcOsid, requestOptions).pipe(map((data: any) => {
 
       let blob = new Blob([data], {
-        type: 'application/pdf' // must match the Accept type
+        type: 'image/svg+xml' // must match the Accept type
         // type: 'application/octet-stream' // for excel 
       });
       var link = document.createElement('a');
       console.log(blob);
       link.href = window.URL.createObjectURL(blob);
-      link.download = this.pdfName + '.pdf';
+      link.download = this.pdfName + '.svg';
       link.click();
 
 
@@ -87,7 +87,7 @@ export class PdfViewComponent implements OnInit {
 
     this.pdfName = this.documentName;
     let headerOptions = new HttpHeaders({
-      'Accept': 'application/pdf',
+      'Accept': 'image/svg+xml',
       'template-key':'html'
     });
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
@@ -95,7 +95,7 @@ export class PdfViewComponent implements OnInit {
     this.http.get(this.config.getEnv('baseUrl')  + '/' + this.documentName + '/' + this.vcOsid, requestOptions).pipe(map((data: any) => {
 
       let blob = new Blob([data], {
-        type: 'application/pdf' // must match the Accept type
+        type: 'image/svg+xml' // must match the Accept type
         // type: 'application/octet-stream' // for excel 
       });
     

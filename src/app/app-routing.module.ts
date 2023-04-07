@@ -31,6 +31,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
  import { PdfViewComponent } from './issure/pdf-view/pdf-view.component';
  import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.component';
  //import { PreviewHtmlComponent } from './issure/preview-html/preview-html.component';
+ import { VerifyCertificateComponent } from './issure/verify-certificate/verify-certificate.component';
 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 // import { FaqComponent } from './custom-components/faq/faq.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
 // Forms
 { path: 'form/:form', component: FormsComponent },
 { path: 'form/:form/:id', component: FormsComponent, canActivate: [AuthGuard] },
+{path : 'verify-certificate',component: VerifyCertificateComponent },
 
 
 // Layouts

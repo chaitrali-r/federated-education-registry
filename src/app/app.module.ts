@@ -24,7 +24,9 @@ import { AutocompleteTypeComponent } from '../app/forms/types/autocomplete.type'
 import { FormlyColorInput } from '../app/forms/types/color.type';
 import { initializeKeycloak } from './utility/app.init';
 import { initLang } from './multilingual.init';
+import { VerifyModule } from 'vc-verification';
 
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 //Local imports
 import { FormsComponent } from './forms/forms.component';
@@ -64,6 +66,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { config } from 'process';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { VerifyCertificateComponent } from './issure/verify-certificate/verify-certificate.component';
 
 
 //form validations
@@ -111,6 +114,12 @@ function initConfig(config: AppConfig) {
   return () => config.load()
 }
 
+let baseConfig = require('../assets/config/config.json')
+
+let configData = {
+  baseUrl: baseConfig['baseUrl']
+  }   
+
 import ISO6391 from 'iso-639-1';
 import { PagesComponent } from './pages/pages.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -137,7 +146,7 @@ import { VerifyComponent } from './issure/verify/verify.component'
 import { FormioModule } from 'angular-formio';
 import { NgxTextEditorModule } from 'ngx-text-editor';
 
-import * as configData from '../assets/config/config.json';
+//import * as configData from '../assets/config/config.json';
 import { BulkRecordsComponent } from './issure/bulk-records/bulk-records.component';
 console.log(configData['default']);
 
@@ -180,8 +189,9 @@ console.log(configData['default']);
      PreviewHtmlComponent,
     // VerifyComponent,
      AdvanceEditorComponent,
-    BulkRecordsComponent
-  ],
+    BulkRecordsComponent,
+    VerifyCertificateComponent
+],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -196,6 +206,8 @@ console.log(configData['default']);
     Bootstrap4FrameworkModule,
     AngularMultiSelectModule,
     NgSelectModule,
+    VerifyModule.forChild(configData), 
+    ZXingScannerModule,
 
     HttpClientModule,
     TranslateModule.forRoot(),
