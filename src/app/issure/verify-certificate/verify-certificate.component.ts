@@ -23,7 +23,6 @@ export class VerifyCertificateComponent implements OnInit {
     {
       "scanner_type": "ZBAR_QRCODE",
       "scanNote": "To verify certificate, simply scan the QR code thats on the document.",
-      "certificateTitle": 'Pledge Certificate',
       "verify_another_Certificate": 'Verify another Certificate',
       "cetificate_not_valid": 'This Certificate is not valid',
       "scan_qrcode_again": "Please scan QR code again"
