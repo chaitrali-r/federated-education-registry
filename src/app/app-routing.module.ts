@@ -47,7 +47,7 @@ const routes: Routes = [
 // Forms
 { path: 'form/:form', component: FormsComponent },
 { path: 'form/:form/:id', component: FormsComponent, canActivate: [AuthGuard] },
-{path : 'verify-certificate',component: VerifyCertificateComponent },
+{path : 'verify',component: VerifyCertificateComponent },
 
 
 // Layouts

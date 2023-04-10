@@ -22,16 +22,6 @@ export class VerifyCertificateComponent implements OnInit {
     this.itemData =
     {
       "scanner_type": "ZBAR_QRCODE",
-      "showResult": [
-        { "title": "Name", "path": "credentialSubject.name" },
-        { "title": "Father Name", "path": "credentialSubject.fatherName" },
-        { "title": "Date of Issuance", "path": "issuanceDate",  'type' : 'date' },
-        { "title": "ABHA Number", "path": "credentialSubject.id",  "removeStr" : "did:abha:" },
-        { "title": "NOTTO ID", "path": "credentialSubject.nottoId" },
-        { "title": "Organs", "path": "credentialSubject.pledge.organs" },
-        { "title": "Tissues", "path": "credentialSubject.pledge.tissues" },
-        {  "title": "Emergency Contact Details", "path": "credentialSubject.emergency.mobileNumber" }
-      ],
       "scanNote": "To verify certificate, simply scan the QR code thats on the document.",
       "certificateTitle": 'Pledge Certificate',
       "verify_another_Certificate": 'Verify another Certificate',
