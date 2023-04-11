@@ -110,6 +110,14 @@ export function constValidationMessage(err, field: FormlyFieldConfig) {
   return `should be equal to constant "${field.templateOptions.const}"`;
 }
 
+export function errValidatorMessage(error: any, field: FormlyFieldConfig) {
+  return `Please Enter ${field.templateOptions.label}`;
+}
+
+export function patternValidatorMessage(error: any, field: FormlyFieldConfig) {
+  return `Please enter a valid ${field.templateOptions.label}`;
+}
+
 function initConfig(config: AppConfig) {
   return () => config.load()
 }
@@ -221,7 +229,8 @@ console.log(configData['default']);
       wrappers: [{ name: 'form-field-horizontal', component: FormlyHorizontalWrapper },
       { name: 'panel', component: PanelWrapperComponent }],
       validationMessages: [
-        { name: 'required', message: '' },
+        { name: 'required', message:  errValidatorMessage },
+        { name: 'pattern', message: patternValidatorMessage },
 
       ],
       types: [

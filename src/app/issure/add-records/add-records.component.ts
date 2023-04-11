@@ -286,6 +286,7 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
 
     if (this.property.hasOwnProperty(this.fieldKey) && this.property[this.fieldKey].hasOwnProperty('format')) {
       tempObj['templateOptions']['type'] = this.property[this.fieldKey].format;
+      tempObj['templateOptions']['pattern'] = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     }
 
     if (this.property.hasOwnProperty(this.fieldKey) && this.property[this.fieldKey].hasOwnProperty('placeholder')) {
