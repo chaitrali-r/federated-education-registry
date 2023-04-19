@@ -24,6 +24,11 @@ export class GetRecordsComponent implements OnInit {
   tempObj: any;
   nameArray = [];
   nameArray2;
+  contactArr = [];
+  contactStr = [];
+  newArrOne = [];
+  newArrTwo = [];
+  maskedNumber = [];
   constructor(public router: Router, public route: ActivatedRoute,
     public generalService: GeneralService, private http: HttpClient,
     private config: AppConfig) { 
@@ -51,6 +56,15 @@ this.getRecords();
     this.generalService.postData('/' + this.documentName + '/search', payout).subscribe((res) => {
     console.log(res);
     this.recordItems = res;
+    for(let i=0;i<this.recordItems.length;i++){
+      //  console.log(this.recordItems[i].contact)
+       this.contactArr[i] = this.recordItems[i].contact;
+       this.newArrOne[i] =  this.contactArr[i].substring(0,6);
+       this.newArrTwo[i] =  this.contactArr[i].substring(6,10);
+       this.newArrOne[i]=  this.newArrOne[i].replaceAll(/\d/g,"*");
+       this.maskedNumber[i] = this.newArrOne[i] + this.newArrTwo[i];
+       this.recordItems[i].contact  = this.maskedNumber[i];
+       }
     }, err=>{
       this.recordItems = [];
       console.log(err);
