@@ -61,7 +61,7 @@
         </tr>
         <tr *ngFor="let item of recordItems" class="p-3">
           <td class="heading-3 sb-text-primary">{{item?.name}}</td>
-          <td class="heading-3">{{item?.contact}}</td>
+          <td class="heading-3">{{item?.contact | mask:0:6}}</td>
        <!-- ?   <td class="heading-3">{{item?.osCreatedAt | date : 'dd MMM y'}} </td> -->
           <td class="d-flex justify-content-end">
                <!--   <div (click)="downloadVc(item)">
