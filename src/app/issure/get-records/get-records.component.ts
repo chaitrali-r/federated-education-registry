@@ -24,11 +24,7 @@ export class GetRecordsComponent implements OnInit {
   tempObj: any;
   nameArray = [];
   nameArray2;
-  contactArr = [];
-  contactStr = [];
-  newArrOne = [];
-  newArrTwo = [];
-  maskedNumber = [];
+
   constructor(public router: Router, public route: ActivatedRoute,
     public generalService: GeneralService, private http: HttpClient,
     private config: AppConfig) { 
