@@ -24,6 +24,7 @@ export class GetRecordsComponent implements OnInit {
   tempObj: any;
   nameArray = [];
   nameArray2;
+
   constructor(public router: Router, public route: ActivatedRoute,
     public generalService: GeneralService, private http: HttpClient,
     private config: AppConfig) { 
@@ -51,6 +52,7 @@ this.getRecords();
     this.generalService.postData('/' + this.documentName + '/search', payout).subscribe((res) => {
     console.log(res);
     this.recordItems = res;
+    
     }, err=>{
       this.recordItems = [];
       console.log(err);

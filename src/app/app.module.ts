@@ -156,6 +156,7 @@ import { NgxTextEditorModule } from 'ngx-text-editor';
 
 //import * as configData from '../assets/config/config.json';
 import { BulkRecordsComponent } from './issure/bulk-records/bulk-records.component';
+import { MaskPipe } from './mask.pipe';
 console.log(configData['default']);
 
 @NgModule({
@@ -198,7 +199,8 @@ console.log(configData['default']);
     // VerifyComponent,
      AdvanceEditorComponent,
     BulkRecordsComponent,
-    VerifyCertificateComponent
+    VerifyCertificateComponent,
+    MaskPipe
 ],
   imports: [
     BrowserModule,
