@@ -41,7 +41,7 @@ export class KeycloakloginComponent implements OnInit {
         this.profileUrl = '/dashboard';
       } else {
        if (this.entityArr.length == 1) {
-          if (this.entity == 'Student' || this.entity =='Teacher' || this.entity == 'Institute') {
+          if (this.entity == 'Student' || this.entity =='Teacher' || this.entity == 'Institute' || this.entity == 'board-cbse') {
             this.profileUrl = '/profile/' + this.entity;
           } else {
             this.profileUrl = '/list/verifiable-credential';
@@ -53,7 +53,7 @@ export class KeycloakloginComponent implements OnInit {
 
           for(let i =0; i < this.entityArr.length; i++)
           {
-            if (this.entityArr[i] == 'Student' || this.entityArr[i] =='Teacher' || this.entityArr[i] == 'Institute') {
+            if (this.entityArr[i] == 'Student' || this.entityArr[i] =='Teacher' || this.entityArr[i] == 'Institute' || this.entityArr[i] == 'board-cbse') {
               this.entity = this.entityArr[i];
               this.profileUrl = '/profile/' + this.entity;
               isSetEntity = true;
