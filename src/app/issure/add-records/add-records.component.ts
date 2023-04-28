@@ -45,6 +45,7 @@ export class AddRecordsComponent implements OnInit {
    searchResult: any[];
   priviousName: any;
   osid: void;
+  records: any=[];
   constructor(public schemaService: SchemaService,
     public toastMsg: ToastMessageService,
     public router: Router,
@@ -304,11 +305,11 @@ Object.assign(this.property,this.definations[this.schemaName].properties);
     return tempObj;
   }
 
-  submit() {
-    console.log(this.model);
+  submit(){
     this.model['nameofScheme'] = this.schemaName;
     this.generalService.postData('/' + this.schemaName, this.model).subscribe((res) => {
-
+      const newRecord = res; 
+      this.records.push(newRecord); 
       this.router.navigate(['records/' + this.schemaName + "/" + this.osid1]);
     })
   }
