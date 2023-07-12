@@ -109,7 +109,7 @@
                 "title": "My Verifiable Credential",
                 "checkStatus" : "false",
                 "callMultiApi" : {
-                    "api" : ["NTSE_Maths", "NTSE_Science", "KalaUtsav", "KheloIndia", "Toycathon","MetroTravel","PreMatricScholarship","ScholarshipForTopClassStudents"]
+                    "api" : ["NTSE_Maths", "NTSE_Science", "KalaUtsav", "KheloIndia", "Toycathon","MetroTravel","PreMatricScholarship","ScholarshipForTopClassStudents", "Belem__Courses"]
                 },
                 "call" : "post",
                 "fields": [
