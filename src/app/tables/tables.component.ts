@@ -114,6 +114,8 @@ export class TablesComponent implements OnInit {
           this.tableSchema.fields.forEach((field) => {
 
             temp_object = field;
+            if(element.hasOwnProperty('email') && element['email'] == localStorage.getItem('loggedInUser'))
+            {
 
             if (temp_object.name) {
               temp_object['value'] = element[field.name]
@@ -137,7 +139,9 @@ export class TablesComponent implements OnInit {
               temp_object['type'] = field.type
             }
             temp_array.push(this.pushData(temp_object));
+          }
           });
+        
           this.property.push(temp_array)
 
         });
