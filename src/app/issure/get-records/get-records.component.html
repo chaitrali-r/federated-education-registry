@@ -55,13 +55,16 @@
     <table class="card-body">
         <tr>
           <th class="heading-4 sb-gray-color">Name</th>
-          <th class="heading-4 sb-gray-color">Mobile Number </th>
+          <th class="heading-4 sb-gray-color" *ngIf="recordItems[0]?.contact">Mobile Number </th>
+          <th class="heading-4 sb-gray-color" *ngIf="recordItems[0]?.email">Email ID </th>
           <!-- <th class="heading-4 sb-gray-color">Issued Date</th> -->
           <th></th>
         </tr>
         <tr *ngFor="let item of recordItems" class="p-3">
           <td class="heading-3 sb-text-primary">{{item?.name}}</td>
-          <td class="heading-3">{{item?.contact | mask:0:6}}</td>
+          <td class="heading-3" *ngIf="item?.contact">{{item?.contact | mask:0:6}}</td>
+          <td class="heading-3" *ngIf="item?.email">{{item?.email | mask:0:3}}</td>
+
        <!-- ?   <td class="heading-3">{{item?.osCreatedAt | date : 'dd MMM y'}} </td> -->
           <td class="d-flex justify-content-end">
                <!--   <div (click)="downloadVc(item)">
