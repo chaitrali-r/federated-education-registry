@@ -9,8 +9,8 @@
     "languageFolder": "/assets/i18n",
     "title": "Education-Sunbird",
     "domainName": "https://demo-education-registry.sunbirdrc.dev",
-    "baseUrl": "https://demo-education-registry.sunbirdrc.dev/registry/api/v1",
-    "schemaUrl": "https://demo-education-registry.sunbirdrc.dev/registry/api/docs/swagger.json",
+    "baseUrl": "http://localhost:4200/registry/api/v1",
+    "schemaUrl": "http://localhost:4200/registry/api/docs/swagger.json",
     "footerText": "Education-Sunbird",
     "languages": [
         "en",
