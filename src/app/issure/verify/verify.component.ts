@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'verify',
-  templateUrl: './verify.component.html',
-  styleUrls: ['./verify.component.scss']
-})
-export class VerifyComponent implements OnInit {
-  constructor() {}
-  ngOnInit(): void {
-  }
+// @Component({
+//   selector: 'verify',
+//   templateUrl: './verify.component.html',
+//   styleUrls: ['./verify.component.scss']
+// })
+// export class VerifyComponent implements OnInit {
+//   constructor() {}
+//   ngOnInit(): void {
+//   }
 
-}
+// }
