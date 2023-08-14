@@ -24,9 +24,9 @@ import { AutocompleteTypeComponent } from '../app/forms/types/autocomplete.type'
 import { FormlyColorInput } from '../app/forms/types/color.type';
 import { initializeKeycloak } from './utility/app.init';
 import { initLang } from './multilingual.init';
-import { VerifyModule } from 'vc-verification';
+//import { VerifyModule } from 'vc-verification';
 
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+//import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 //Local imports
 import { FormsComponent } from './forms/forms.component';
@@ -66,7 +66,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { config } from 'process';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { VerifyCertificateComponent } from './issure/verify-certificate/verify-certificate.component';
+//import { VerifyCertificateComponent } from './issure/verify-certificate/verify-certificate.component';
 
 
 //form validations
@@ -150,7 +150,7 @@ import { GraphDashboardComponent } from './graph-dashboard/graph-dashboard.compo
 import { AdvanceEditorComponent } from './issure/advance-editor/advance-editor.component'; 
 // import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 import { NgJsonEditorModule } from 'ang-jsoneditor';
-import { VerifyComponent } from './issure/verify/verify.component' 
+//import { VerifyComponent } from './issure/verify/verify.component' 
 import { FormioModule } from 'angular-formio';
 import { NgxTextEditorModule } from 'ngx-text-editor';
 
@@ -199,7 +199,7 @@ console.log(configData['default']);
     // VerifyComponent,
      AdvanceEditorComponent,
     BulkRecordsComponent,
-    VerifyCertificateComponent,
+   // VerifyCertificateComponent,
     MaskPipe
 ],
   imports: [
@@ -216,8 +216,8 @@ console.log(configData['default']);
     Bootstrap4FrameworkModule,
     AngularMultiSelectModule,
     NgSelectModule,
-    VerifyModule.forChild(configData), 
-    ZXingScannerModule,
+    // VerifyModule.forChild(configData), 
+    // ZXingScannerModule,
 
     HttpClientModule,
     TranslateModule.forRoot(),
@@ -342,4 +342,3 @@ export class AppModule {
 
   }
 }
-
