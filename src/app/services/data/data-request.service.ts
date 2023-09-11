@@ -167,6 +167,7 @@ export class DataService {
       headers: {
         Accept: '*/*',
          Authorization: 'Bearer ' +  this.token
+         
       }
     };
 

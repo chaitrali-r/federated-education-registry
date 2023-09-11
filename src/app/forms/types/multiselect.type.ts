@@ -8,7 +8,7 @@ import { FieldType } from '@ngx-formly/core';
       [bindLabel]="labelProp"
       [bindValue]="valueProp"
       [multiple]="to.multiple"
-      [placeholder]="to.placeholder"
+      [placeholder]="to.placeholder? to.placeholder : 'Select'"
       [formControl]="formControl">
     </ng-select>
   `,
