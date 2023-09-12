@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+        "newSchema": {
+            "$ref": "#/definitions/newSchema"
+        }
+    },
+    "required": [
+        "newSchema"
+    ],
+    "title": "newSchema",
+    "definitions": {
+        "newSchema": {
+            "$id": "#/properties/newSchema",
+            "type": "object",
+            "title": "The newSchema Schema",
+            "required": [],
+            "properties": {}
+        }
+    },
+    "_osConfig": {
+        "privateFields": [],
+        "indexFields": [],
+        "uniqueIndexFields": [],
+        "systemFields": [
+            "osCreatedAt",
+            "osUpdatedAt",
+            "osCreatedBy",
+            "osUpdatedBy"
+        ],
+        "attestationPolicies": [],
+        "inviteRoles": [
+            "anonymous"
+        ],
+        "roles": [
+            "anonymous"
+        ],
+        "ownershipAttributes": [],
+        "credentialTemplate": {
+            "@context": [
+                "https://www.w3.org/2018/credentials/v1",
+                {
+                    "@context": {
+                        "@version": 1.1,
+                        "@protected": true,
+                        "newSchema": {
+                                "@id": "https://github.com/sunbird-specs/vc-specs#newSchema",
+                                "@context": {
+                                    "@version": 1.1,
+                                    "@protected": true,
+                                    "name":"schema:Text"
+                                }
+                        }
+                    }
+                }
+            ],
+            "type": [
+                "VerifiableCredential"
+            ],
+            "issuer": "https://",
+            "issuanceDate": "{{osCreatedAt}}",
+            "credentialSubject": {
+                "type": "newSchema",
+                "name": "{{name}}"
+            },
+            "evidence": {}
+        },
+        "certificateTemplates": {}
+    }
+}

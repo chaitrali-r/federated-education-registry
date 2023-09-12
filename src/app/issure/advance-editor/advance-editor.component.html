@@ -12,13 +12,14 @@
         <pre id="json"><code class="language-json" #json></code></pre>
       </div> -->
       <div>
-        <button type="button" class="collapsible" (click)="showLessJson()">JSON Schema 
-          <i [hidden]="isShowLessJson" class="fa fa-plus float-end arrIcon"></i>
-          <i [hidden]="!isShowLessJson" class="fa fa-minus float-end arrIcon"></i>
+        <button type="button" class="collapsible">JSON Schema 
+         <!-- <i [hidden]="isShowLessJson" (click)="updateJsonFields()" class="btn float-end arrIcon">Apply</i> -->
+          <i [hidden]="isShowLessJson" (click)="showLessJson()" class="fa fa-plus float-end arrIcon"></i>
+          <i [hidden]="!isShowLessJson" (click)="showLessJson()" class="fa fa-minus float-end arrIcon"></i>
         </button>
         <div class="well content">
           <json-editor [options]="editorOptions" style="min-height: 700px;" [data]="jsonFields"
-            [(ngModel)]="jsonFields"></json-editor>
+            [(ngModel)]="jsonFields" (ngModelChange)="updateJsonFields()" ></json-editor>
         </div>
       </div>
 

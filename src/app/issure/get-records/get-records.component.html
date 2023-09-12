@@ -28,18 +28,16 @@
         <span class="heading-2" *ngIf="recordItems?.length == 1 || !recordItems?.length">{{recordItems?.length}} Record</span>
         <span class="heading-2" *ngIf="recordItems?.length > 1">{{recordItems?.length}} Records</span>
         
-
-        
             <div class="ml-4 float-end">
                 <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">            
                     <!-- <i class="fa fa-ellipsis-h text-secondary cursor-pointer" aria-hidden="true"></i> -->
                     <!-- routerLink="/add-records/{{documentName}}" -->
-                    <a> <button type="button" 
+                    <a> <button type="button" id="btnAddRecord"
                         class="btn btn-primary btn-primary-sm text-capitalize  p0">Add </button></a>
                 </div>
-                <div class="dropdown-menu float-end">
-                <a class="dropdown-item" href="/add-records/{{documentName}}/{{osid}}">Add Single record</a>
-                <a class="dropdown-item" href="/bulk-records/{{documentName}}/{{osid}}">Add Bulk record</a>
+                <div class="dropdown-menu float-end" id="opAddRecord">
+                <a class="dropdown-item" id="singleRecord" href="/add-records/{{documentName}}/{{osid}}">Add Single record</a>
+                <a class="dropdown-item" id="bulkRecord" href="/bulk-records/{{documentName}}/{{osid}}">Add Bulk record</a>
                 </div>
             </div>
     </div>

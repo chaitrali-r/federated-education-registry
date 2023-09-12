@@ -44,7 +44,7 @@ export class GeneralService {
   }
 
 
-  getData(apiUrl, outside: boolean = false) {
+  getData(apiUrl, outside: boolean = false, wHeader: any = null) {
     var url;
     if (outside) {
       url = apiUrl;
@@ -56,6 +56,11 @@ export class GeneralService {
     const req = {
       url: url
     };
+
+    if(wHeader != null)
+    {
+      req['header'] = wHeader;
+    }
     return this.dataService.get(req);
   }
 

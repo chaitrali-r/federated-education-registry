@@ -23,10 +23,7 @@ export class DataService {
     public keycloak: KeycloakService) {
        this.keycloak.getToken().then((token)=>{
         this.token = token;
-        localStorage.setItem('loggedInUser', this.keycloak.getUsername());
-
-      });
-
+      })
   }
 
 /**
@@ -35,11 +32,15 @@ export class DataService {
   private getHeader(headers?: HttpOptions['headers']): HttpOptions['headers'] {
 
     this.keycloak.isLoggedIn().then((res)=>{
-      console.log(res);
       this.isLoogedIn = res;
     })
 
     if(this.isLoogedIn){
+
+      this.keycloak.getToken().then((token)=>{
+        this.token = token;
+      })
+      
      // alert(this.keycloak.isLoggedIn);
       let default_headers = {
         Accept: 'application/json',
@@ -123,24 +124,6 @@ export class DataService {
     });
 }
 
-
-// /**
-// * for making post api calls
-// * @param RequestParam param
-// */
-// put(requestParam): Observable<any> {
-//   const httpOptions: HttpOptions = {
-//     headers: requestParam.header ? this.getHeader(requestParam.header) : this.getHeader(),
-//     params: requestParam.param
-//   };
-//   return this.http.put(requestParam.url, requestParam.data, httpOptions).pipe(
-//     mergeMap((data: any) => {
-//       // if (data.responseCode !== 'OK') {
-//       //   return observableThrowError(data);
-//       // }
-//       return observableOf(data);
-//     }));
-// }
 
 
 /**

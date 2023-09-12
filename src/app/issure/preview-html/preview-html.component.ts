@@ -10,6 +10,9 @@ import 'grapesjs-preset-webpage';
 import { JsonEditorComponent, JsonEditorOptions } from 'ang-jsoneditor';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { SchemaService } from '../../services/data/schema.service';
+import * as newSchema from './newSchema.json';
+import { error } from 'console';
+
 
 @Component({
   selector: 'app-preview-html',
@@ -17,11 +20,10 @@ import { SchemaService } from '../../services/data/schema.service';
   styleUrls: ['./preview-html.component.scss']
 })
 export class PreviewHtmlComponent implements OnInit {
-
+  
   public editorOptions: JsonEditorOptions;
   public data: any;
   @ViewChild(JsonEditorComponent, { static: false }) jsonEditor: JsonEditorComponent;
-  name1: string = 'pratik';
   sampleData: any;
   schemaContent: any;
   userJson: any;
@@ -43,22 +45,22 @@ export class PreviewHtmlComponent implements OnInit {
   certificateProperties: any;
   certificateTitle: any;
   propertyArr: any = [];
-  sampleUserJson: any;
+  iscredentialSubAdd: boolean;
+  id: string;
 
   constructor(public router: Router, public route: ActivatedRoute, public toastMsg: ToastMessageService,
     public generalService: GeneralService, public schemaService: SchemaService) {
-
+    this.id = this.route.snapshot.paramMap.get('id'); 
     this.editorOptions = new JsonEditorOptions()
-    // this.editorOptions.modes = ['code']; // set all allowed modes
 
     this.editorOptions.mode = 'code';
     this.editorOptions.history = true;
-    // this.editorOptions.onChange = () => console.log(this.jsonEditor.get());
     this.editorOptions.onChange = () => this.jsonEditor.get();
 
-    this.userHtml = '';
+    // this.userHtml = '';
 
-    if (localStorage.getItem('sampleData')) {
+    if(!this.id){
+   if (localStorage.getItem('sampleData')) {
       this.sampleData = JSON.parse(localStorage.getItem('sampleData'));
     } else {
       this.editor.runCommand('core:canvas-clear');
@@ -66,29 +68,60 @@ export class PreviewHtmlComponent implements OnInit {
       this.sampleData = this.router.getCurrentNavigation().extras.state.item;
       localStorage.setItem('sampleData', JSON.stringify(this.sampleData));
     }
+  }
 
     this.generalService.getData('/Issuer').subscribe((res) => {
-
       this.issuerOsid = res[0].osid;
     });
 
-
-
-
   }
 
-
   async ngOnInit() {
+    this.userHtml = '';
+    if(this.id){
+     await this.getSchemaById();
+    }else{
+      await this.readHtmlSchemaContent(this.sampleData);
+      this.grapesJSDefine();
 
-    await this.readHtmlSchemaContent(this.sampleData);
-    this.grapesJSDefine();
+    }
+
     /* ------END-------------------------Advance Editor ----------------------- */
 
   }  //onInit();
 
 
+  getSchemaById()
+  {
+    this.generalService.getData('Schema/' + this.id).subscribe((res) => {
+      this.schemaContent = res.schema;
+      this.sampleData = JSON.parse(res.schema); //._osConfig['certificateTemplates']['html'];
+      let url = this.sampleData._osConfig['certificateTemplates']['html'].replace("minio://", "")
+      // let data = JSON.parse(res.schema);
+      this.certificateTitle = this.sampleData['title']; 
+      this.templateName = this.certificateTitle;
+      this.userJson = this.sampleData;
+      this.addCrtTemplateFields(this.sampleData);
+      this.getCrtTempFields(this.userJson);
+
+      this.generalService.getData(url, false, {}).subscribe((res) => {
+        console.log(res);
+        this.userHtml = res;
+        this.grapesJSDefine();
+
+      },(err)=>{
+        console.log(err );
+        this.userHtml = err.error.text;
+        this.grapesJSDefine();
+
+      })
+
+    });
+  }
+
   grapesJSDefine()
   {
+    
     this.editor = this.initializeEditor();
     this.editor.on('load', () => {
       var panelManager = this.editor.Panels;
@@ -179,8 +212,6 @@ export class PreviewHtmlComponent implements OnInit {
         run: function (editor) {
           if (editPanel == null) {
 
-
-
             const editMenuDiv = document.createElement('div');
 
             const arr = ['alpha', 'bravo', 'charlie', 'delta', 'echo', 'alpha', 'bravo', 'charlie', 'delta', 'echo', 'alpha', 'bravo', 'charlie', 'delta', 'echo'];
@@ -217,12 +248,7 @@ export class PreviewHtmlComponent implements OnInit {
               cardBContainer.appendChild(cardBdiv);		// append li to ul.
             }
 
-
-
             editMenuDiv.appendChild(cardDiv);
-
-
-
             const panels = pn.getPanel('views-container')
             panels.set('appendContent', editMenuDiv).trigger('change:appendContent')
             editPanel = editMenuDiv;
@@ -238,8 +264,6 @@ export class PreviewHtmlComponent implements OnInit {
             };
           }
           editPanel.style.display = 'block';
-
-
 
         },
         stop: function (editor) {
@@ -315,13 +339,19 @@ export class PreviewHtmlComponent implements OnInit {
     });
   }
 
-  dataChange() {
+
+async goTpCertificatePg()  {
+  if(!this.id){
+    await  this.router.navigateByUrl('/certificate');
     window.location.reload();
+  }else{
+    await  this.router.navigateByUrl('/dashboard');
+  }
+ 
   }
 
   back() {
     history.back();    //this.router.navigate(['/certificate']);
-    this.editor.runCommand('core:canvas-clear');
   }
 
   backToHtmlEditor() {
@@ -330,26 +360,24 @@ export class PreviewHtmlComponent implements OnInit {
   }
 
   cancel() {
-    // this.isPreview = false;
     localStorage.setItem('sampleData', '');
-  this.editor.runCommand('core:canvas-clear');
     this.router.navigate(['/dashboard']);
   }
 
   async readHtmlSchemaContent(doc) {
 
     this.userHtml = '';
+  if(!doc.hasOwnProperty('htmlContent') && !doc.htmlContent ){
     await fetch(doc.schemaUrl)
       .then(response => response.text())
       .then(data => {
-        //    this.schemaContent = data;
-        // console.log({ data });
+           this.schemaContent = data;
         data = JSON.parse(data);
-        this.certificateTitle = data['title'];
+        this.certificateTitle = data['title']; 
+
+      //  this.templateName = this.certificateTitle;
         this.userJson = data;
-      //  this.sampleUserJson = data;
-       // this.addCrtTemplateFields();
-         this.certificateTemplate = this.userJson['_osConfig']['credentialTemplate'];
+        this.addCrtTemplateFields(this.schemaContent);
         this.getCrtTempFields(this.userJson);
       });
 
@@ -357,24 +385,14 @@ export class PreviewHtmlComponent implements OnInit {
       .then(response => response.text())
       .then(data => {
         this.userHtml = data;
-
-        //   this.injectHTML();
       });
-  }
-
-
-  addCrtTemplateFields111(userJson) {
-    let url = this.userJson['_osConfig']['credentialTemplate'];
-
-    this.userHtml = '';
-    fetch(url)
-      .then(response => response.text())
-      .then(data => {
-        //    this.schemaContent = data;
-        console.log({ data });
-        //  console.log(JSON.parse(data));
-      });
-
+    }else{
+      this.userHtml = doc.htmlContent;
+      this.certificateTitle = 'newSchema';
+    //  this.templateName = this.certificateTitle;
+      this.userJson = newSchema.default;
+      console.log(newSchema);
+    }
   }
 
   getCrtTempFields(certificateSchema) {
@@ -408,6 +426,7 @@ export class PreviewHtmlComponent implements OnInit {
     }
     });
 
+   this.addCrtTemplateFields(this.sampleData);
     this.grapesJSDefine();
 
   }
@@ -424,16 +443,22 @@ export class PreviewHtmlComponent implements OnInit {
     return str.replace(new RegExp(escapedFind, 'g'), replace);
   }
 
-  addCrtTemplateFields() {
-    let certTmpJson = (this.schemaContent) ? this.schemaContent : this.userJson;
-    certTmpJson = certTmpJson['_osConfig']['credentialTemplate'];
-    if (typeof (certTmpJson) == 'string') { 
+  addCrtTemplateFields(schemaContent) {
+    // this.schemaContent = (this.schemaContent && (typeof(this.sampleData) != 'object')) ? JSON.parse(this.schemaContent) : this.userJson;
+    this.schemaContent = ( (typeof(schemaContent) != 'object')) ? JSON.parse(schemaContent) : this.userJson;
+
+
+    let certTmpJson = (this.schemaContent && this.schemaContent != "") ? this.schemaContent : this.userJson;
+    certTmpJson = (certTmpJson['_osConfig'].hasOwnProperty('credentialTemplate')) ? certTmpJson['_osConfig']['credentialTemplate'] : '';
+    if (typeof (certTmpJson) == 'string' && certTmpJson != "") {
       let jsonUrl = certTmpJson;
 
       fetch(jsonUrl)
       .then(response => response.text())
       .then(data => {
-        //    this.schemaContent = data;
+        this.schemaContent['_osConfig']['credentialTemplate'] = data;
+
+           // this.schemaContent = data;
         console.log({ data });
          // console.log(JSON.parse(data));
       });
@@ -441,13 +466,38 @@ export class PreviewHtmlComponent implements OnInit {
 
     } else {
 
-      certTmpJson = certTmpJson['credentialSubject'];
-      console.log(certTmpJson['credentialSubject']);
+      certTmpJson = (certTmpJson != '')? certTmpJson['credentialSubject'] : {};
+      certTmpJson['type'] = (certTmpJson.hasOwnProperty('type') && certTmpJson != '') ? certTmpJson['type'] : this.schemaContent.title;
 
       if (this.schemaContent) {
         let _self = this;
         let propertyData = this.schemaContent.definitions[this.certificateTitle].properties;
+
+        if(!this.schemaContent._osConfig.hasOwnProperty('credentialTemplate'))
+        {
+          this.schemaContent._osConfig['credentialTemplate'] = {
+              '@context' : [
+                "https://www.w3.org/2018/credentials/v1",
+                {    
+                  '@context' : {
+                    "@version": 1.1,
+                    "@protected": true,
+                  }
+                }
+              ]
+            
+          }
+        }
+
         let contextJson = this.schemaContent._osConfig.credentialTemplate["@context"][1]["@context"];
+
+        contextJson[certTmpJson['type']] = {
+          "@id":"https://github.com/sunbird-specs/vc-specs#" + certTmpJson['type'],
+          "@context": {
+            "name":"schema:Text"
+          }
+        }
+
         Object.keys(propertyData).forEach(function (key) {
           console.log({ key });
 
@@ -456,19 +506,15 @@ export class PreviewHtmlComponent implements OnInit {
           if(propertyData[key].type == 'string' || propertyData[key].type == 'number')
           {
             certTmpJson[key] = "{{" + key + "}}";
+            contextJson[certTmpJson['type']]['@context'][key] = "schema:Text";
 
-            contextJson[key] = {
-              "@id":"https://github.com/sunbird-specs/vc-specs#" + key,
-              "@context": {
-                "name":"schema:Text"
-              }
-            }
+           
           }else if(propertyData[key].type == 'object'){
             let objPro = propertyData[key].properties;
             Object.keys(objPro).forEach(function (key2) {
-              console.log({ key2 });
-
               certTmpJson[key2] = "{{" + key + "." + key2 + "}}";
+              contextJson[certTmpJson['type']]['@context'][key2] = "schema:Text";
+
             })
           }
           }
@@ -476,24 +522,18 @@ export class PreviewHtmlComponent implements OnInit {
 
         this.schemaContent['_osConfig']['credentialTemplate']['credentialSubject'] = certTmpJson;
         this.schemaContent._osConfig.credentialTemplate["@context"][1]["@context"] = contextJson;
+        this.userJson = this.schemaContent;
       }
     }
   }
 
   async submit() {
-   // this.addCrtTemplateFields();
-  console.log(this.certificateTemplate);
-    // this.schemaContent = this.jsonEditor.get();//JSON.stringify(this.userJson);
+    this.schemaContent = (this.schemaContent && typeof(this.schemaContent) != 'string') ? this.schemaContent : this.userJson;
 
-    if(this.schemaContent)
-    {
-      this.schemaContent = this.schemaContent;
-    }else{
-      this.userJson['_osConfig']['credentialTemplate'] = this.certificateTemplate;
-      this.schemaContent =   this.userJson ;
-    }
-   // this.schemaContent = (this.schemaContent) ? this.schemaContent : this.sampleUserJson;
-   // this.schemaContent = await this.addCrtTemplateFields();
+    // if(!this.schemaContent['_osConfig'].hasOwnProperty('credentialTemplate'))
+    // {
+    //   this.getCrtTempFields(this.schemaContent)
+    // }
 
     var htmlWithCss = this.editor.runCommand('gjs-get-inlined-html');
 
@@ -526,30 +566,60 @@ export class PreviewHtmlComponent implements OnInit {
       let result = JSON.stringify(this.schemaContent);
 
       result = this.replaceAll(result, this.oldTemplateName, this.templateName);
+      result = this.replaceAll(result, 'nameofthestudent', 'name');
+
 
       let payload = {
         "name": this.templateName,
         "description": this.description,
-        "schema": result
+        "schema": result,
+        "status":"PUBLISHED"  
       }
 
       if (res.documentLocations[0]) {
+        if(!this.id){
         this.generalService.postData('/Schema', payload).subscribe((res) => {
           localStorage.setItem('content', '');
-          this.editor.runCommand('core:canvas-clear');
           this.router.navigate(['/dashboard']);
         }, (err) => {
-          
+          console.log('err ----', err);
+          this.toastMsg.error('error', err.error.params.errmsg)
+
+        })
+      }else{
+        this.generalService.putData('/Schema', this.id, payload).subscribe((res) => {
+          localStorage.setItem('content', '');
+          this.router.navigate(['/dashboard']);
+        }, (err) => {
           console.log('err ----', err);
           this.toastMsg.error('error', err.error.params.errmsg)
 
         })
       }
+      }
     })
 
   }
 
+  showPopup()
+  {
+    var htmlWithCss = this.editor.runCommand('gjs-get-inlined-html');
 
+    var parser = new DOMParser();
+    var htmlDoc = parser.parseFromString(htmlWithCss, 'text/html');
+    this.userHtml = htmlDoc.documentElement.innerHTML
+
+    this.iscredentialSubAdd = this.userHtml.includes('credentialSubject');
+
+  var button = document.createElement("button");
+  button.setAttribute('data-toggle', 'modal');
+  button.setAttribute('data-target', `#saveDocumentData`);
+  document.body.appendChild(button)
+  button.click();
+  button.remove();
+  
+  }
+  
   injectHTML() {
 
     const iframe: HTMLIFrameElement = document.getElementById('iframe2') as HTMLIFrameElement;
@@ -572,10 +642,15 @@ export class PreviewHtmlComponent implements OnInit {
   }
 
   jsonSchemaData(jsonSchema) {
-    this.schemaContent = jsonSchema;
+    this.schemaContent = jsonSchema._data;
     this.getCrtTempFields(this.schemaContent);
     this.schemaDiv = false;
     this.htmlDiv = true;
+  }
+
+  ngOnDestroy()
+  {
+    this.editor.runCommand('core:canvas-clear');
   }
 
 

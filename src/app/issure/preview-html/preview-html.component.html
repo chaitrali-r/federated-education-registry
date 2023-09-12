@@ -1,19 +1,15 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-header nav-b navbar-inverse pl-4">
-        <button class="gobackBtn" *ngIf="htmlDiv" (click)="back();">
+         <span *ngIf="htmlDiv" (click)="goTpCertificatePg();">
+             <i class="fa fa-angle-left primary-text"></i>
+            <span class="heading-2 ml-2">Edit Template</span> 
+        </span> 
+
+        <span *ngIf="schemaDiv" (click)="backToHtmlEditor();">
             <i class="fa fa-angle-left primary-text"></i>
-            <span class="heading-2 ml-2">Edit Template</span>
-
-        </button>
-
-        <button class="gobackBtn" *ngIf="schemaDiv" (click)="backToHtmlEditor();">
-            <i class="fa fa-angle-left primary-text"></i>
-            <span  class="heading-2 ml-2">Advance Editor</span>
-
-        </button>
+            <span class="heading-2 ml-2">Advance Editor</span>
+        </span>
     </nav>
-
-
 </header>
 
 
@@ -22,109 +18,39 @@
         <div class="row d-flex mt-4 setHeight">
             <div class="preview-footer">
                 <!-- <button class="btn btn-sec-bg submit-button mx-3">Preview on email</button> -->
-                <button (click)="cancel()" class="btn btn-sec-bg submit-button">Cancel</button>
-                <button data-toggle="modal" data-target="#prewiewProfile" class="btn text-capitalize float-end btn-primary btn-primary-sm p1">Save Document</button>
+                <!-- <button (click)="cancel()" class="btn btn-sec-bg submit-button">Preview on eLocker</button> -->
+                <button data-toggle="modal" [hidden]="schemaDiv" (click)="showPopup()"
+                    class="btn text-capitalize float-end btn-primary btn-primary-sm p1">Save Document</button>
             </div>
             <div class=" p-0 setHeight border-right mtn-28">
-                <!-- <ul class="nav nav-tabs ui-tabs font-600 pt-3">
-                    <li class="active col-sm-5"><a href="#htmlDiv" class="heading-2" data-toggle="tab">Design</a>
-                    </li>
-                    <li class="col-sm-6"><a href="#schemaDiv" class="heading-2" data-toggle="tab">Schema</a>
-                    </li>
-                </ul> -->
-                <div  id="htmlDiv" [hidden]="!htmlDiv">
-                    
-                        <div class="d-flex flex-justify-between py-1 px-4">
-                            <div class="heading-2">HTML</div>
-                            <!-- <button class="fs-14 btn btn-sec-bg submit-button float-end">
-                                    <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Edit 
-                                </button> -->
+                <div id="htmlDiv" [hidden]="!htmlDiv">
+
+                    <div class="d-flex flex-justify-between py-1 px-4">
+                        <div class="heading-2">HTML</div>
+                    </div>
+                    <div class="mx-3">
+
+                        <div id="gjs">
+                            {{userHtml}}
                         </div>
-                        <div class="mx-3">
-                            <!-- <editor   
-                            [init]="demoBaseConfig"
-                            outputFormat="html"     
-                            initialValue="{{userHtml}}"
-                        
-                            [(ngModel)]="userHtml"
-                            ></editor> -->
-
-                            <div id="gjs">
-                              {{userHtml}}
-                            </div>
-                            <div id="blocks"></div>
-                        </div>
-                        <!-- (onSelectionChange)="injectHTML()" -->
-
-
-                        <!-- <textarea rows="20" cols="70" class="card-body w-100 h-90 border-light-color" [(ngModel)]="userHtml"
-                            (ngModelChange)="injectHTML();"  placeholder="Enter html code ..."></textarea> -->
-                        <!-- <code-input (click)="codeInput();" style="height: 600px; width: 100%; float: left; margin: 1%; font-size: 10px; line-height: normal;" lang="HTML" value="{{userHtml}}" name="html_code" placeholder="HTML"></code-input> -->
-
-         
+                        <div id="blocks"></div>
+                    </div>
                 </div>
-               
-                    <div  id="schemaDiv"[hidden]="!schemaDiv">
-                        <div class="d-flex flex-justify-between py-1 px-4">
-                            <div class="heading-2">JSON Schema</div>
-                            <!-- <button class="fs-14 btn btn-sec-bg submit-button float-end">
-                                    <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Advance Editor 
-                                </button> -->
-                        </div>
-                        <advance-editor *ngIf="userJson" [jsonSchema]="userJson" (newItemEvent)="jsonSchemaData($event)"></advance-editor>
-                        <!-- <div class="disabledbutton">
-                            <json-editor [options]="editorOptions" style="min-height: 500px;" [data]="userJson" [(ngModel)]="userJson"></json-editor>
 
-                        </div> -->
-                        <!-- <textarea rows="20" cols="70" class="card-body w-100 h-90 border-light-color"
-                            [(ngModel)]="userJson" placeholder="Enter html code ..."></textarea> -->
+                <div id="schemaDiv" [hidden]="!schemaDiv">
+                    <div class="d-flex flex-justify-between py-1 px-4">
+                        <div class="heading-2">JSON Schema</div>
                     </div>
-               
-
-                <!-- <div class="bs-example">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a href="#htmlDiv" class="nav-link active" data-toggle="tab">HTML</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#schemaDiv" class="nav-link" data-toggle="tab">Schema</a>
-                        </li>
-
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="htmlDiv">
-                            <textarea rows="20" cols="70" class="card-body w-100 h-75" [(ngModel)]="userHtml"
-                            (ngModelChange)="injectHTML();"  placeholder="Enter html code ..."></textarea>
-                        </div>
-                        <div class="tab-pane fade" id="schemaDiv">
-                            <textarea rows="20" cols="70" class="card-body w-100 h-75" [(ngModel)]="userJson"
-                                placeholder="Enter html code ..."></textarea>
-                        </div>
-
-                    </div>
-                </div> -->
+                    <advance-editor *ngIf="userJson" [jsonSchema]="userJson" (newItemEvent)="jsonSchemaData($event)">
+                    </advance-editor>
+                </div>
             </div>
-
-            <!-- <div class="col-12 col-sm-7 setHeight">
-                <h6 class="heading-2">Preview</h6>
-                <div class="card h-90 border-light-color bx-none">
-                    <div class="embed-responsive embed-responsive-1by1">
-                        <iframe id="iframe2" src="about:blank" class="w-100 h-100 embed-responsive-item"></iframe>
-                    </div>
-                </div>
-            </div> -->
-
         </div>
 
-        <div>
-            <!-- <button (click)="cancel()" class="btn btn-sec-bg submit-button">Cancel</button>
-            <button data-toggle="modal" data-target="#prewiewProfile" class="btn btn-bg submit-button float-end mr-2">Save</button>
-           -->
-
-            <div class="modal right fade" id="prewiewProfile" tabindex="-1" role="dialog"
-                aria-labelledby="prewiewProfile">
+            <div class="modal right fade" id="saveDocumentData" tabindex="-1" role="dialog"
+                aria-labelledby="saveDocumentData">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" *ngIf="propertyArr.length && iscredentialSubAdd">
                         <div class="modal-header pt-4 border-0">
                             <h3 class="heading-5">Save Document</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -154,12 +80,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal-content" *ngIf="!propertyArr.length || !iscredentialSubAdd">
+                        <div class="modal-body text-center">
+                        <div class="container mt-4">
+                            <h3 class="heading-5 mb-4">Properties of schema not added</h3>
+                           <h5 class="p16 lh-lg" >Please add properties using advance editor and add them in the certificate</h5>
+                            <div class="mt-4">
+                                <button *ngIf="!propertyArr.length" (click)="editTemplate()" data-dismiss="modal" aria-label="Close"
+                                    class="btn text-capitalize btn-primary btn-primary-sm p1">OK</button>
+
+                                    <button *ngIf="propertyArr.length && !iscredentialSubAdd"  data-dismiss="modal" aria-label="Close"
+                                    class="btn text-capitalize btn-primary btn-primary-sm p1">OK</button>
+                              </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        </div>
-
-
     </div>
+
+
 
 </div>

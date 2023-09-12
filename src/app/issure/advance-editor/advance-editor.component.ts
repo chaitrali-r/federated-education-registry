@@ -88,32 +88,44 @@ export class AdvanceEditorComponent implements OnInit {
     }
 
     delete jsonFields['_osConfig']['credentialTemplate'];
+    this.jsonSchemaToFormioConvrt(jsonFields);
+
+
+  }
+
+  jsonSchemaToFormioConvrt(jsonFields)
+  {
+    this.myForm['components'] = [];
     this.jsonFields = jsonFields;
     this.jsonTitle = jsonFields['title'];
     let jsonSchema = jsonFields.definitions[this.jsonTitle].properties;
 
     this.propertyArr = [];
     let _self = this;
-    Object.keys(jsonSchema).forEach(function (key) {
-      let resultJson;
-      _self.propertyArr.push(key);
 
-      if (jsonSchema[key].type == 'array') {
-        resultJson = _self.nastedJsonSep(jsonSchema, key, jsonFields.definitions[_self.jsonTitle]);
-      } else if (jsonSchema[key].type == 'object') {
-        resultJson = _self.objectJsonSchema(jsonSchema, key, jsonFields.definitions[_self.jsonTitle]);
-      } else {
-        resultJson = _self.plainJson(jsonSchema, key, jsonFields.definitions[_self.jsonTitle]);
-      }
+    if (jsonSchema != undefined) {
+      Object.keys(jsonSchema).forEach(function (key) {
+        let resultJson;
+        _self.propertyArr.push(key);
 
-      _self.myForm['components'].push(resultJson);
+        if (jsonSchema[key].type == 'array') {
+          resultJson = _self.nastedJsonSep(jsonSchema, key, jsonFields.definitions[_self.jsonTitle]);
+        } else if (jsonSchema[key].type == 'object') {
+          resultJson = _self.objectJsonSchema(jsonSchema, key, jsonFields.definitions[_self.jsonTitle]);
+        } else {
+          resultJson = _self.plainJson(jsonSchema, key, jsonFields.definitions[_self.jsonTitle]);
+        }
 
-    });
+        _self.myForm['components'].push(resultJson);
 
-    for (let j = 0; j < jsonFields.definitions[this.jsonTitle].required.length; j++) {
-      this.options.disabled.push(jsonFields.definitions[this.jsonTitle].required[j]);
+      });
+
+      // for (let j = 0; j < jsonFields.definitions[this.jsonTitle].required.length; j++) {
+      //   this.options.disabled.push(jsonFields.definitions[this.jsonTitle].required[j]);
+      // }
+    } else {
+      this.myForm['components'] = [];
     }
-
   }
 
   nastedJsonSep(jsonSchema, key, definationName) {
@@ -180,7 +192,6 @@ export class AdvanceEditorComponent implements OnInit {
           }
 
           containerJson['components'].push(tempField);
-          // console.log({ containerJson });
         });
 
         return containerJson;
@@ -236,35 +247,110 @@ export class AdvanceEditorComponent implements OnInit {
 
 
       this.jsonFields.definitions[this.jsonTitle].properties = tempField;
-
+      if(typeof(this.vcFields) == 'object'){
+        this.updateCredentialTemp();
+      }
 
       this.jsonEditor.set(this.jsonFields);
-      // this.jsonEditor['_data']['_osConfig']['credentialTemplate'] = this.vcFields;
-      // this.newItemEvent.emit(this.jsonEditor);
-
     }
   }
 
-  showJson(event) {
+  updateCredentialTemp() {
+    let certTmpJson = {};
+    certTmpJson['type'] = (this.vcFields['credentialSubject'].hasOwnProperty('type') && this.vcFields['credentialSubject'] != '') ? this.vcFields['credentialSubject']['type'] : this.jsonFields.title;
+
+    let _self = this;
+    let propertyData = this.jsonFields.definitions[this.jsonFields.title].properties;
+    let contextJson = {}
+    contextJson[certTmpJson['type']] = {
+      "@id": "https://github.com/sunbird-specs/vc-specs#" + certTmpJson['type'],
+      "@context": {}
+    }
+
+    Object.keys(propertyData).forEach(function (key) {
+      console.log({ key });
+
+
+      if (propertyData[key].type == 'string' || propertyData[key].type == 'number') {
+        certTmpJson[key] = "{{" + key + "}}";
+        contextJson[certTmpJson['type']]['@context'][key] = "schema:Text";
+
+
+      } else if (propertyData[key].type == 'object') {
+        let objPro = propertyData[key].properties;
+        Object.keys(objPro).forEach(function (key2) {
+          console.log({ key2 });
+          certTmpJson[key2] = "{{" + key + "." + key2 + "}}";
+          contextJson[certTmpJson['type']]['@context'][key2] = "schema:Text";
+        })
+      }
+
+    });
+
+
+    let tempjson = this.vcFields
+    this.vcFields = {
+      '@context': [
+        "https://www.w3.org/2018/credentials/v1",
+        {
+          '@context': {
+            "@version": 1.1,
+            "@protected": true,
+          }
+        }
+      ],
+      "issuer": "did:web:sunbirdrc.dev/vc/skill",
+      "type": [
+        "VerifiableCredential"
+      ],
+      "issuanceDate": "2021-08-27T10:57:57.237Z",
+    };
+    this.vcFields['credentialSubject'] = certTmpJson;
+    this.vcFields["@context"][1]["@context"] = contextJson;
+
+    this.vcEditor.set(this.vcFields);
+  }
+
+  showJson(event : any) {
     console.log(event);
     this.vcFields = JSON.parse(event.target.value);
     this.vcFieldsText = event.target.value;
-    // this.vcEditor.set(this.vcFields);
+  }
+
+  updateJsonFields() {
+
+    this.jsonFields = this.jsonEditor.get();
+    this.jsonSchemaToFormioConvrt(this.jsonFields); 
+    //this.jsonFields = JSON.parse(event.target.value);
+   
   }
 
   saveAdvance() {
-    console.log(this.vcFields);
-    // console.log(this.jsonEditor['_data']);
-
-    //let value = this.vcEditorOptions.onChange  = () => { this.vcEditor.getText();}
-    // console.log( this.vcEditor.getText())
-
+    this.jsonFields = this.jsonEditor.get();
     this.jsonEditor['_data']['_osConfig']['credentialTemplate'] = this.vcFields;
-    this.newItemEvent.emit(this.jsonEditor['_data']);
+    this.newItemEvent.emit(this.jsonEditor);
   }
+
+  checkValidate(element, tempFjson){
+    if (element.hasOwnProperty('validate') && element.validate.minLength) {
+      tempFjson[element.key].minLength = element.validate.minLength;
+    }
+
+    if (element.hasOwnProperty('validate') && element.validate.maxLength) {
+      tempFjson[element.key].maxLength = element.validate.maxLength;
+    }
+    if(element.hasOwnProperty('validate') && element.validate.customMessage){
+         tempFjson[element.key]['customMessage'] = element.validate.customMessage
+      }
+      if(element.hasOwnProperty('validate') && element.validate.pattern){
+        tempFjson[element.key]['pattern'] = element.validate.pattern
+     }
+    return tempFjson;
+  } 
 
   formioJsonToPlainJSONSchema(event, components, jsonDefination) {
     let tempFjson = {};
+    this.jsonFields["_osConfig"]['uiConfig'] = [];
 
     components.forEach(element => {
 
@@ -272,16 +358,31 @@ export class AdvanceEditorComponent implements OnInit {
         let temp = element.label.replaceAll(/\s/g, '');
 
         element.key = temp.charAt(0).toLowerCase() + temp.slice(1);
+       
         if (element.type == 'container') {
           jsonDefination.properties[element.key] = { 'type': 'object' };
         }
       }
-
+   
       tempFjson[element.key] = this.signleFieldData(element);
       if (element.hasOwnProperty('validate') && element.validate.required == true) {
         this.jsonFields.definitions[this.jsonTitle].required.push(element.key);
       }
+      if (element.hasOwnProperty('unique') && element.unique == true) {
+        this.jsonFields["_osConfig"]["uniqueIndexFields"].push(element.key);
+      //  this.jsonFields["status"] = "PUBLISHED"
+      }
+      
+        this.jsonFields["_osConfig"]["uiConfig"].push({
+          'key' : element.key,
+          'title' : element.label
+        });
+      //  this.jsonFields["status"] = "PUBLISHED"
+      
 
+
+      tempFjson = this.checkValidate(element, tempFjson);
+    
       if (element.type == 'container') {
 
         let containerType = jsonDefination.properties[element.key].type;
@@ -292,29 +393,28 @@ export class AdvanceEditorComponent implements OnInit {
         }
 
       } if (element.type == 'select') {
-        /* tempFjson[element.key] = {
-           "type": "string",
-           "title": element.label,
-           "widget": {
-             "formlyConfig": {
-               "type": "enum",
-               "templateOptions": {
-                 "options": element['data']['values']
-               }
-             }
-           }
-         }*/
-        let temp = [];
-        for (let i = 0; i < element['data']['values'].length; i++) {
-          temp.push(element['data']['values'][i].value)
+
+        let enumArr = [];
+
+        for(let i = 0; i<  element['data']['values'].length; i++)
+        {
+            enumArr.push( element['data']['values'][i]['label'])
         }
+
         tempFjson[element.key] = {
-          "type": 'select',
+          "type": "string",
           "title": element.label,
-          "enum": temp
+          "enum" : enumArr,
+          "fieldType": "select"
+          // "widget": {
+          //   "formlyConfig": {
+          //     "type": "enum",
+          //     "templateOptions": {
+          //       "options": element['data']['values']
+          //     }
+          //   }
+          // }
         }
-
-
         console.log({ tempFjson });
       }
       if (element.type == 'checkbox') {
@@ -361,7 +461,6 @@ export class AdvanceEditorComponent implements OnInit {
         }
       }
     });
-
     return tempFjson;
   }
 
@@ -465,8 +564,9 @@ export class AdvanceEditorComponent implements OnInit {
     if (fieldObj.hasOwnProperty('description')) {
       tempFjson[fieldObj.key]['description'] = fieldObj.description
     }
-
-
+    
+    tempFjson = this.checkValidate(fieldObj, tempFjson);
+    
     if (fieldObj.type == 'datetime') {
       tempFjson[fieldObj.key]['format'] = 'date'
     }
@@ -475,9 +575,8 @@ export class AdvanceEditorComponent implements OnInit {
 
   }
 
-
+  
   onDeleteComponent(e) {
-    alert('onDeleteComponent');
   }
 
   onSubmit(event) { }
